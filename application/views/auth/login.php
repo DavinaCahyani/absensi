@@ -238,20 +238,20 @@
             </div>
         </div>
         <div class="form-container">
-            <div class="slide-controls">
+            <!-- <div class="slide-controls">
                 <input type="radio" name="slide" id="login" checked>
                 <input type="radio" name="slide" id="signup">
                 <label for="login" class="slide login"><a href="auth">Login</a></label>
                 <label for="signup" class="slide signup"><a href="register">Register</a></label>
                 <div class="slider-tab"></div>
-            </div>
+            </div> -->
             <div class="form-inner">
-                <form action="#" class="login">
+                <form action="<?php echo base_url();?>auth/aksi_login" method="post" class="signup">
                     <div class="field">
-                        <input type="text" placeholder="Email Address" required>
+                        <input type="text" name="email" placeholder="Email Address" required>
                     </div>
                     <div class="field">
-                        <input type="password" placeholder="Password" required>
+                        <input type="password" name="password" placeholder="Password" required>
                     </div>
                     <div class="field btn">
                         <div class="btn-layer"></div>

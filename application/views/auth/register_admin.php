@@ -238,30 +238,32 @@
             </div>
         </div>
         <div class="form-container">
-            <div class="slide-controls">
+            <!-- <div class="slide-controls">
                 <input type="radio" name="slide" id="login" checked>
                 <input type="radio" name="slide" id="signup">
                 <label for="login" class="slide login"><a href="register">Register</a></label>
                 <label for="signup" class="slide signup"><a href="./">Login</a></label>
                 <div class="slider-tab"></div>
-            </div>
+            </div> -->
             <div class="form-inner">
-                <form action="#" class="signup">
+                <form action="<?php echo base_url();?>auth/aksi_register_admin" method="post" class="signup">
+
                     <div class="field">
-                        <input type="text" placeholder="Username" required>
+                        <input type="text" name="username" placeholder="Username" required>
                     </div>
                     <div class="field">
-                        <input type="text" placeholder="Email" required>
+                        <input type="text" name="email" placeholder="Email" required>
                     </div>
                     <div class="field">
-                        <input type="text" placeholder="Nama Depan" required>
+                        <input type="text" name="nama_depan" placeholder="Nama Depan" required>
                     </div>
                     <div class="field">
-                        <input type="text" placeholder="Nama Belakang" required>
+                        <input type="text" name="nama_belakang" placeholder="Nama Belakang" required>
                     </div>
                     <div class="field">
-                        <input type="password" placeholder="Password" required>
+                        <input type="password" name="password" placeholder="Password" required>
                     </div>
+
                     <div class="field btn">
                         <div class="btn-layer"></div>
                         <input type="submit" value="Register">
