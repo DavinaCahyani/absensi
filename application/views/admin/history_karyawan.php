@@ -308,52 +308,38 @@
         </aside>
 
 
-
         <div id="navbar-wrapper">
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header text-light p-3">
-                        <p>Dashboard Karyawan</p>
+                        <p>History Karyawan</p>
                     </div>
                 </div>
             </nav>
         </div>
+        <br>
+        <div class="">
+            <a href="<?php echo base_url('admin/export')?>" class="btn btn-primary">Export</a>
 
+        </div>
         <section id="content-wrapper">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            Total Masuk Kerja
-                        </div>
-                        <div class="card-body bg-primary text-white">
-                            <h2 class="card-text">300 orang</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            Total Izin Kerja
-                        </div>
-                        <div class="card-body bg-primary text-white">
-                            <h2 class="card-text">30 orang</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            Total Cuti Kerja
-                        </div>
-                        <div class="card-body bg-primary text-white">
-                            <h2 class="card-text">10 orang</h2>
-                        </div>
-                    </div>
-                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Kegiatan</th>
+                            <th>Nama</th>
+                            <th>Tanggal</th>
+                            <th>Jam masuk</th>
+                            <th>Jam Pulang</th>
+                            <th>Keterangan izin</th>
+                            <th>Status</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
             </div>
         </section>
-
     </div>
 </body>
 

@@ -23,4 +23,29 @@ class Admin extends CI_Controller {
         // $data['absen'] = $this->m_model->get_data('absen')->result();
         $this->load->view('admin/karyawan');
     }
+    public function history_karyawan()
+    {
+        $data['absen'] = $this->m_model->get_data('absen')->result();
+        $this->load->view('admin/history_karyawan');
+    }
+    public function menu_absen()
+    {
+        // $data['absen'] = $this->m_model->get_data('absen')->result();
+        $this->load->view('admin/menu_absen');
+    }
+    public function aksi_menu_absen()
+    {
+        $data=[
+            'id_karyawan' => $this->input->post('nama_karyawan'),
+            'kegiatan' => $this->input->post('kegiatan'),
+            'date' => $this->input->post('date'),
+            'jam_masuk' => $this->input->post('jam_masuk'),
+            'jam_pulang' => $this->input->post('jam_pulang'),
+            'keterangan_izin' => $this->input->post('keterangan_izin'),
+            'status' => $this->input->post('status'),
+        ];
+        $this->m_model->tambah_data('absen', $data);
+        redirect(base_url('admin/history_karyawan'));
+    }
 }
+?>
