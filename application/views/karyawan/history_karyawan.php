@@ -7,6 +7,8 @@
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.4/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.4/dist/sweetalert2.min.js"></script>
     <style>
     body {
         padding-bottom: 30px;
@@ -108,8 +110,12 @@
         /* Warna putih untuk teks saat dihover */
     }
 
-
-
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 10px;
+        /* Mengatur jarak antara tombol */
+    }
 
     #navbar-wrapper {
         width: 100%;
@@ -295,14 +301,21 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active">
-                    <a href="<?php echo base_url('admin/karyawan')?>"><i class="fa fa-user"></i>Dashboard Karyawan</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url('admin/history_karyawan')?>"><i class="fa fa-user"></i>History
+                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa fa-user"></i>Dashboard
                         Karyawan</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url('admin/menu_absen')?>"><i class="fa fa-user"></i>Absen Karyawan</a>
+                    <a href="<?php echo base_url('karyawan/history_karyawan')?>"><i class="fa fa-user"></i>History
+                        Karyawan</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('karyawan/menu_absen')?>"><i class="fa fa-user"></i>Absen Karyawan</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('karyawan/izin')?>"><i class="fa fa-user"></i>Izin Karyawan</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('karyawan/profil')?>"><i class="fa fa-user"></i>Profil Karyawan</a>
                 </li>
             </ul>
         </aside>
@@ -329,7 +342,6 @@
                         <tr>
                             <th>No</th>
                             <th>Kegiatan</th>
-                            <th>Nama</th>
                             <th>Tanggal</th>
                             <th>Jam masuk</th>
                             <th>Jam Pulang</th>
@@ -338,8 +350,64 @@
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
+                    <tbody class="table-group-divider">
+                        <?php $no=0;foreach($absen as $row): $no++?>
+                        <tr>
+                            <td><?php echo $no ?></td>
+                            <td><?php echo $row->kegiatan ?></td>
+                            <td><?php echo $row->date ?></td>
+                            <td><?php echo $row->jam_masuk ?></td>
+                            <td><?php echo $row->jam_pulang ?></td>
+                            <td><?php echo $row->keterangan_izin ?></td>
+                            <td><?php echo $row->status ?></td>
+
+                            <td>
+                                <div class="button-container">
+                                    <?php if ($row->status !== 'Done') : ?>
+                                    <form action="<?php echo base_url('karyawan/aksi_pulang') ?>" method="post">
+                                        <input type="hidden" name="id_karyawan" value="<?php echo $row->id_karyawan ?>">
+                                        <button type="submit" class="btn btn-primary">Pulang</button>
+                                    </form>
+                                    <?php endif; ?>
+                                    <a href="<?php echo base_url('karyawan/aksi_ubah/' . $row->id_karyawan) ?>"
+                                        class="btn btn-primary">Ubah</a>
+                                    <button onClick="hapus(<?php echo $row->id_karyawan ?>)"
+                                        class="btn btn-danger">Hapus</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
             </div>
         </section>
+        <script>
+        function hapus(id) {
+            swal.fire({
+                title: 'Yakin untuk menghapus data ini?',
+                text: "Data ini akan terhapus permanen",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Batal',
+                confirmButtonText: 'Ya Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil Dihapus',
+                        showConfirmButton: false,
+                        timer: 1500,
+
+                    }).then(function() {
+                        window.location.href = "<?php echo base_url('karyawan/hapus_karyawan/')?>" + id;
+                    });
+                }
+            });
+        }
+        </script>
+
     </div>
 </body>
 

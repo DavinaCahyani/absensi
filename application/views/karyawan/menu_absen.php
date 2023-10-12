@@ -297,14 +297,21 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active">
-                    <a href="<?php echo base_url('admin/karyawan')?>"><i class="fa fa-user"></i>Dashboard Karyawan</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url('admin/history_karyawan')?>"><i class="fa fa-user"></i>History
+                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa fa-user"></i>Dashboard
                         Karyawan</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url('admin/menu_absen')?>"><i class="fa fa-user"></i>Absen Karyawan</a>
+                    <a href="<?php echo base_url('karyawan/history_karyawan')?>"><i class="fa fa-user"></i>History
+                        Karyawan</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('karyawan/menu_absen')?>"><i class="fa fa-user"></i>Absen Karyawan</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('karyawan/izin')?>"><i class="fa fa-user"></i>Izin Karyawan</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('karyawan/profil')?>"><i class="fa fa-user"></i>Profil Karyawan</a>
                 </li>
             </ul>
         </aside>
@@ -324,14 +331,13 @@
             <div class="row">
                 <div class="card w-100 m-auto p-3">
                     <h3 class="text-center">Absen</h3>
-                    <form action="<?php echo base_url('admin/aksi_menu_absen')?>" enctype="multipart/form-data"
+                    <form action="<?php echo base_url('karyawan/aksi_menu_absen')?>" enctype="multipart/form-data"
                         method="post" class="row">
                         <div class="form-group">
                             <label for="kegiatan">Kegiatan</label>
                             <input type="kegiatan" class="form-control" id="kegiatan" name="kegiatan">
                         </div>
                         <div class="col-md-6 mt-4">
-                            <button type="submit" class="btn btn-primary">Izin</button>
                             <button type="submit" class="btn btn-primary">Masuk</button>
                         </div>
                     </form>
