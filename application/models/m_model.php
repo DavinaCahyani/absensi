@@ -22,10 +22,11 @@ class M_model extends CI_Model {
         $data=$this->db->where($id_column, $id)->get($tabel);
         return $data;
     }
-    function ubah_data($tabel, $data, $where)
+    public function ubah_data($table, $data, $where)
     {
-        $data=$this->db->update($tabel, $data, $where);
-        return $this->db->affected_rows();
+        // Fungsi untuk mengubah data dalam tabel
+        $this->db->where($where);
+        return $this->db->update($table, $data);
     }
     public function get_by_column($table, $column, $value)
     {
@@ -52,9 +53,13 @@ class M_model extends CI_Model {
         // Kembalikan data dalam bentuk array.
         return $query->result();
     }
-    public function getAbsenById($id_karyawan) {
-        return $this->db->get_where('absen', ['id_karyawan' => $id_karyawan])->row();
+    public function getAbsenById($absen_id)
+    {
+        // Fungsi untuk mengambil data absen berdasarkan ID
+        $query = $this->db->get_where('absen', array('id' => $absen_id));
+        return $query->row_array();
     }
+    
 
     // Mendapatkan data absen berdasarkan ID karyawan
     public function getAbsenByKaryawan($id_karyawan) {
@@ -66,5 +71,25 @@ class M_model extends CI_Model {
         $this->db->where('id_karyawan', $id_karyawan);
         $this->db->update('absen', $data);
     }
+    public function getStatusAbsen($id_karyawan, $tanggal) {
+        $this->db->where('id_karyawan', $id_karyawan);
+        $this->db->where('date', $tanggal);
+        $result = $this->db->get('absen')->row();
+
+        if ($result) {
+            return $result->status;
+        }
+
+        // Jika tidak ada data absen untuk tanggal tersebut, maka karyawan belum absen
+        return 'belum_absen';
+    }
+
+    public function updateStatusAbsen($id_karyawan, $tanggal, $status) {
+        $data = array('status' => $status);
+        $this->db->where('id_karyawan', $id_karyawan);
+        $this->db->where('date', $tanggal);
+        $this->db->update('absen', $data);
+    }
+
 }
 ?>
