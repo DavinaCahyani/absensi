@@ -53,6 +53,16 @@ class M_model extends CI_Model {
         // Kembalikan data dalam bentuk array.
         return $query->result();
     }
+    public function getDataKaryawan() {
+        // Gantilah 'histori_karyawan' dengan nama tabel histori karyawan Anda.
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('role', 'karyawan');
+        $query = $this->db->get();
+
+        // Kembalikan data dalam bentuk array.
+        return $query->result();
+    }
     public function getAbsenById($absen_id)
     {
         // Fungsi untuk mengambil data absen berdasarkan ID
@@ -60,11 +70,16 @@ class M_model extends CI_Model {
         return $query->row_array();
     }
     
-
     // Mendapatkan data absen berdasarkan ID karyawan
     public function getAbsenByKaryawan($id_karyawan) {
         return $this->db->get_where('absen', ['id_karyawan' => $id_karyawan])->row();
     }
+    public function update($table, $data, $where)
+    {
+        $data = $this->db->update($table, $data, $where);
+        return $this->db->affected_rows();
+    }
+
 
     // Update data absen
     public function updateAbsen($id_karyawan, $data) {
@@ -90,6 +105,26 @@ class M_model extends CI_Model {
         $this->db->where('date', $tanggal);
         $this->db->update('absen', $data);
     }
+    public function getbulanan($bulan) {
+        $this->db->select('*');
+        $this->db->from('absen');
+        $this->db->where("DATE_FORMAT(absen.date, '%Y-%m') =", $bulan);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+  public function getAbsensiLast7Days() {
+    $this->load->database();
+    $end_date = date('Y-m-d');
+    $start_date = date('Y-m-d', strtotime('-7 days', strtotime($end_date)));        
+    $query = $this->db->select('date, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status, COUNT(*) AS total_absences')
+                      ->from('absen')
+                      ->where('date >=', $start_date)
+                      ->where('date <=', $end_date)
+                      ->group_by('date, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status')
+                      ->get();
+    return $query->result_array();
+}
 
 }
 ?>

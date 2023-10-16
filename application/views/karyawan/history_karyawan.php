@@ -396,7 +396,7 @@
                                     </form>
                                     <?php endif; ?>
                                     <!-- UBAH -->
-                                    <a href="<?php echo base_url('karyawan/ubah_absen/' . $row->id_karyawan) ?>"
+                                    <a href="<?php echo base_url('karyawan/ubah_absen/' . $row->id) ?>"
                                         class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                                     <!-- HAPUS -->
                                     <button onClick="hapus(<?php echo $row->id_karyawan ?>)" class="btn btn-danger"><i

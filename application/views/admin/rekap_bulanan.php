@@ -7,9 +7,12 @@
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.4/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.4/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
     body {
         padding-bottom: 30px;
@@ -57,7 +60,6 @@
         text-align: center;
         padding: 20px 0;
         background: #4723D9;
-
 
     }
 
@@ -116,6 +118,13 @@
         margin-right: 10px;
         /* Atur margin sesuai kebutuhan */
     }
+
+    .button-container {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+    }
+
 
     .navbar-profile {
         position: absolute;
@@ -312,20 +321,21 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa fa-user"></i>Dashboard
-                        Karyawan</a>
+                    <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
+                </li>
+                <a href="<?php echo base_url('admin/admin')?>"><i class="fa fa-user"></i>Rekap Keseluruhan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('karyawan/history_karyawan')?>"><i class="fa fa-user"></i>History
-                        Karyawan</a>
+                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa fa-user"></i>Rekap Harian
+                    </a>
                 </li>
                 <li class="active mt-3">
-
-                    <a href="<?php echo base_url('karyawan/menu_absen')?>"><i class="fa fa-user"></i>Absen Karyawan</a>
+                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa fa-user"></i>Rekap Mingguan
+                    </a>
                 </li>
                 <li class="active mt-3">
-
-                    <a href="<?php echo base_url('karyawan/izin')?>"><i class="fa fa-user"></i>Izin Karyawan</a>
+                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa fa-user"></i>Rekap Bulanan
+                    </a>
                 </li>
             </ul>
         </aside>
@@ -336,48 +346,43 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-brand text-white" href="">
-                            Absen Karyawan
+                            Rekap Bulanan
                         </a>
                     </div>
-                    <p class="navbar-profile"><a href="<?php echo base_url('karyawan/profil') ?>" class="text-light"><i
-                                class="fa-regular fa-circle-user"></i></a></p>
                 </div>
             </nav>
         </div>
 
+        <br>
+        
         <section id="content-wrapper">
             <div class="row">
-                <div class="card w-100 m-auto p-3">
-                    <h3 class="text-center">Ubah Absen</h3>
-                    <?php if ( $absen['keterangan_izin'] == '-' ) : ?>
-                    <form action="<?php echo base_url('karyawan/aksi_ubah_absen') ?>" enctype="multipart/form-data"
-                        method="post" class="row">
-                        <input type="hidden" name="id" value="<?php echo $absen['id'] ?>">
-                        <div class="form-group">
-                            <label for="kegiatan">Kegiatan</label>
-                            <input type="text" class="form-control" id="kegiatan" name="kegiatan"
-                                value="<?php echo $absen['kegiatan']?>">
-                        </div>
-                        <div class="col-md-6 mt-4">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                    <?php else : ?>
-                    <form action="<?php echo base_url('karyawan/aksi_ubah_izin') ?>" enctype="multipart/form-data"
-                        method="post" class="row">
-                        <input type="hidden" name="id" value="<?php echo $absen['id'] ?>">
-                        <div class="form-group">
-                            <label for="kegiatan">Kegiatan</label>
-                            <input type="text" class="form-control" id="keterangan_izin" name="keterangan_izin"
-                                value="<?php echo $absen['keterangan_izin']?>">
-
-                        </div>
-                        <div class="col-md-6 mt-4">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                    <?php endif; ?>
-                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Kegiatan</th>
+                            <th>Tanggal</th>
+                            <th>Jam masuk</th>
+                            <th>Jam Pulang</th>
+                            <th>Keterangan</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <?php $no = 0; foreach($absen as $row): $no++ ?>
+                        <tr>
+                            <td><?php echo $no ?></td>
+                            <td><?php echo $row->kegiatan ?></td>
+                            <td><?php echo $row->date ?></td>
+                            <td><?php echo $row->jam_masuk ?></td>
+                            <td><?php echo $row->jam_pulang ?></td>
+                            <td><?php echo $row->keterangan_izin ?></td>
+                            <td><?php echo $row->status ?></td>
+                        </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
             </div>
         </section>
 

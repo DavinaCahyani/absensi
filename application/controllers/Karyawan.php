@@ -58,36 +58,33 @@ class Karyawan extends CI_Controller {
     $this->load->view('karyawan/ubah_absen', $data);
 }
 
-public function aksi_ubah_absen()
-{
-    $id_karyawan= $this->input->post('id_karyawan');
-    $kegiatan = $this->input->post('kegiatan');
-    $keterangan_izin = $this->input->post('keterangan_izin');
-    
-    // Ambil data absen yang sedang diubah
-    $absen_data = $this->m_model->getAbsenById($id);
+public function aksi_ubah_absen() { 
+    $id = $this->input->post('id'); 
+    $kegiatan = $this->input->post('kegiatan'); 
 
-    // Inisialisasi data yang akan diubah
-    $data = [];
+    $data = [
+        'kegiatan' => $kegiatan,
+    ];
 
-    // Periksa jenis kegiatan dan keterangan izin yang sedang diubah
-    if ($kegiatan == '-' && $absen_data['keterangan_izin'] != '-') {
-        // Jika jenis kegiatan adalah "-", dan keterangan izin saat ini bukan "-", maka ubah keterangan izin
-        $data['keterangan_izin'] = $keterangan_izin;
-    } elseif ($absen_data['kegiatan'] == '-' && $kegiatan != '-') {
-        // Jika jenis kegiatan saat ini adalah "-", dan kegiatan yang diubah bukan "-", maka ubah kegiatan
-        $data['kegiatan'] = $kegiatan;
-    }
-
-    // Cek apakah ada data yang akan diubah
-    if (!empty($data)) {
-        $eksekusi = $this->m_model->ubah_data('absen', $data, array('id' => $absen_id));
-        if ($eksekusi) {
-            $this->session->set_flashdata('berhasil_ubah_absen', 'Berhasil mengubah kegiatan atau keterangan izin');
-        }
-    }
-    redirect(base_url('karyawan/history_karyawan'));
+    $this->m_model->update('absen', $data, array('id'=>$id)); 
+    redirect(base_url('karyawan/history_karyawan')); 
+    $this->session->set_flashdata('berhasil_ubah_absen', 'Berhasil mengubah kegiatan atau keterangan izin'); 
 }
+public function aksi_ubah_izin() { 
+    $id = $this->input->post('id'); 
+    $keterangan_izin = $this->input->post('keterangan_izin'); 
+
+    $data = [
+        'keterangan_izin' => $keterangan_izin,
+    ];
+
+    $this->m_model->update('absen', $data, array('id'=>$id)); 
+    redirect(base_url('karyawan/history_karyawan')); 
+    $this->session->set_flashdata('berhasil_ubah_absen', 'Berhasil mengubah kegiatan atau keterangan izin'); 
+}
+
+
+
 public function aksi_menu_absen()
 {
     $id_karyawan = $this->session->userdata('id');
