@@ -12,11 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <?php echo link_tag('style/style.css');?>
+
 </head>
 
 <body>
     <div id="wrapper">
+
         <aside id="sidebar-wrapper">
             <div class="sidebar-brand">
                 <h2>Dashboard</h2>
@@ -30,22 +33,26 @@
                         Keseluruhan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa fa-user"></i>Rekap Harian</a>
+                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa fa-user"></i>Rekap Harian
+                    </a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa fa-user"></i>Rekap Mingguan</a>
+                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa fa-user"></i>Rekap Mingguan
+                    </a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa fa-user"></i>Rekap Bulanan</a>
+                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa fa-user"></i>Rekap Bulanan
+                    </a>
                 </li>
             </ul>
         </aside>
+
         <div id="navbar-wrapper">
             <nav class="navbar navbar-inverse" style="background: #4723D9; border: none;">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-brand text-white" href="">
-                            Rekap Bulanan
+                            Rekap Keseluruhan
                         </a>
                     </div>
                 </div>
@@ -53,32 +60,12 @@
         </div>
         <br>
         <div class="">
-            <a href="<?php echo base_url('admin/export_rekap_bulanan')?>" class="btn btn-primary">Export</a>
+            <a href="<?php echo base_url('admin/export_rekap_harian')?>" class="btn btn-primary">Export</a>
 
         </div>
 
         <section id="content-wrapper">
             <div class="row">
-                <form action="<?= base_url('admin/rekap_bulanan') ?>" method="post">
-                    <div class="form-group">
-                        <label for="bulan">Pilih Bulan:</label>
-                        <select class="form-control" id="bulan" name="bulan">
-                            <option value="01">Januari</option>
-                            <option value="02">Februari</option>
-                            <option value="03">Maret</option>
-                            <option value="04">April</option>
-                            <option value="05">Mei</option>
-                            <option value="06">Juni</option>
-                            <option value="07">Juli</option>
-                            <option value="08">Agustus</option>
-                            <option value="09">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -92,8 +79,7 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        <?php if (!empty($absen)): ?>
-                        <?php $no = 0; foreach($absen as $row): $no++ ?>
+                        <?php $no=0;foreach($absen as $row): $no++?>
                         <tr>
                             <td><?php echo $no ?></td>
                             <td><?php echo $row->kegiatan ?></td>
@@ -102,17 +88,12 @@
                             <td><?php echo $row->jam_pulang ?></td>
                             <td><?php echo $row->keterangan_izin ?></td>
                             <td><?php echo $row->status ?></td>
-                        </tr>
-                        <?php endforeach ?>
-                        <?php else: ?>
-                        <tr>
-                            <td colspan="7">Tidak ada data yang ditemukan.</td>
-                        </tr>
-                        <?php endif; ?>
+                            <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
         </section>
+
     </div>
 </body>
 

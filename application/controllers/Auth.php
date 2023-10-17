@@ -46,7 +46,7 @@ class auth extends CI_Controller {
         ];
         $this->session->set_userdata($data);
         if ($this->session->userdata('role') == 'admin') {
-            redirect(base_url()."admin/admin");
+            redirect(base_url()."admin/data_karyawan");
         } elseif ($this->session->userdata('role') == 'karyawan') {
             redirect(base_url()."karyawan/karyawan");
         } else {

@@ -112,7 +112,36 @@ class M_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    public function get_bulanan($date)
+    {
+        $this->db->from('absen');
+        $this->db->where("DATE_FORMAT(absen.date, '%m') =", $date);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
+    public function getRekapBulanan($bulan) {
+        $this->db->select('MONTH(date) as bulan, COUNT(*) as total_absensi');
+        $this->db->from('absen');
+        $this->db->where('MONTH(date)', $bulan); // Menyaring data berdasarkan bulan
+        $this->db->group_by('bulan');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getRekapHarian($tanggal) {
+        // Gantilah 'nama_tabel' dengan nama tabel yang sesuai di database Anda
+        $this->db->select('*');
+        $this->db->from('absen');
+        $this->db->where('date', $tanggal); // Menyaring berdasarkan tanggal
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return array(); // Mengembalikan array kosong jika tidak ada data yang ditemukan
+        }
+    }
   public function getAbsensiLast7Days() {
     $this->load->database();
     $end_date = date('Y-m-d');
@@ -123,7 +152,7 @@ class M_model extends CI_Model {
                       ->where('date <=', $end_date)
                       ->group_by('date, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status')
                       ->get();
-    return $query->result_array();
+    return $query->result();
 }
 
 }

@@ -10,290 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-    body {
-        padding-bottom: 30px;
-        position: relative;
-        min-height: 100%;
-    }
+    <?php echo link_tag('style/style.css');?>
 
-    a {
-        transition: background 0.2s, color 0.2s;
-    }
-
-    a:hover,
-    a:focus {
-        text-decoration: none;
-    }
-
-    #wrapper {
-        padding-left: 0;
-        transition: all 0.5s ease;
-        position: relative;
-    }
-
-    #sidebar-wrapper {
-        z-index: 1000;
-        position: fixed;
-        left: 250px;
-        width: 0;
-        height: 100%;
-        margin-left: -250px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        background: #F7F6FB;
-        /* Warna ungu muda */
-        transition: all 0.5s ease;
-    }
-
-    #wrapper.toggled #sidebar-wrapper {
-        width: 250px;
-    }
-
-    .sidebar-brand {
-        position: absolute;
-        top: 0;
-        width: 250px;
-        text-align: center;
-        padding: 20px 0;
-        background: #4723D9;
-
-    }
-
-    .sidebar-brand h2 {
-        margin: 0;
-        font-weight: 600;
-        font-size: 25px;
-        background: #4723D9;
-        color: white;
-        /* Warna ungu */
-    }
-
-    .sidebar-nav {
-        position: absolute;
-        top: 75px;
-        width: 250px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    /* Gaya saat item dihover */
-    .sidebar-nav>li:hover {
-        background: #4723D9;
-        text-indent: 10px;
-        line-height: 42px;
-        /* Warna ungu */
-    }
-
-    /* Gaya saat item mendapatkan fokus (diklik) */
-    .sidebar-nav>li:focus {
-        background: #4723D9;
-        /* Warna ungu */
-    }
-
-    /* Warna teks untuk item di dalam sidebar */
-    .sidebar-nav>li>a {
-        text-decoration: none;
-        color: #4723D9;
-        /* Warna ungu untuk teks */
-        font-weight: 600;
-        font-size: 18px;
-        text-indent: 10px;
-        line-height: 42px;
-    }
-
-    /* Warna teks saat item dihover */
-    .sidebar-nav>li:hover>a {
-        color: #F7F6FB;
-        text-indent: 10px;
-        line-height: 42px;
-        /* Warna putih untuk teks saat dihover */
-    }
-
-    .navbar-profile {
-        position: absolute;
-        right: 15px;
-        top: 5px;
-        font-size: 50px;
-        /* Ubah ukuran ikon sesuai keinginan Anda */
-        color: #F7F6FB;
-        text-decoration: none;
-    }
-
-
-    #navbar-wrapper {
-        width: 100%;
-        position: absolute;
-        z-index: 2;
-    }
-
-    #wrapper.toggled #navbar-wrapper {
-        position: absolute;
-        margin-right: -250px;
-    }
-
-    #navbar-wrapper .navbar {
-        border-width: 0 0 0 0;
-        background-color: #4723D9;
-        /* Warna ungu */
-        height: 75px;
-        font-size: 24px;
-        margin bottom: 0;
-        border-radius: 0;
-    }
-
-    #navbar-wrapper .navbar a {
-        color: #F7F6FB;
-        /* Warna putih */
-    }
-
-    #navbar-wrapper .navbar a:hover {
-        color: #F7F6FB;
-        /* Warna putih */
-    }
-
-    #content-wrapper {
-        width: 100%;
-        position: absolute;
-        padding: 15px;
-        top: 100px;
-    }
-
-    #wrapper.toggled #content-wrapper {
-        position: absolute;
-        margin-right: -250px;
-    }
-
-    @media (min-width: 992px) {
-        #wrapper {
-            padding-left: 250px;
-        }
-
-        #wrapper.toggled {
-            padding-left: 60px;
-        }
-
-        #sidebar-wrapper {
-            width: 250px;
-        }
-
-        #wrapper.toggled #sidebar-wrapper {
-            width: 60px;
-        }
-
-        #wrapper.toggled #navbar-wrapper {
-            position: absolute;
-            margin-right: -190px;
-        }
-
-        #wrapper.toggled #content-wrapper {
-            position: absolute;
-            margin-right: -190px;
-        }
-
-        #navbar-wrapper {
-            position: relative;
-        }
-
-        #wrapper.toggled {
-            padding-left: 60px;
-        }
-
-        #content-wrapper {
-            position: relative;
-            top: 0;
-        }
-
-        #wrapper.toggled #navbar-wrapper,
-        #wrapper.toggled #content-wrapper {
-            position: relative;
-            margin-right: 60px;
-        }
-    }
-
-    @media (min-width: 768px) and (max-width: 991px) {
-        #wrapper {
-            padding-left: 60px;
-        }
-
-        #sidebar-wrapper {
-            width: 60px;
-        }
-
-        #wrapper.toggled #navbar-wrapper {
-            position: absolute;
-            margin-right: -250px;
-        }
-
-        #wrapper.toggled #content-wrapper {
-            position: absolute;
-            margin-right: -250px;
-        }
-
-        #navbar-wrapper {
-            position: relative;
-        }
-
-        #wrapper.toggled {
-            padding-left: 250px;
-        }
-
-        #content-wrapper {
-            position: relative;
-            top: 0;
-        }
-
-        #wrapper.toggled #navbar-wrapper,
-        #wrapper.toggled #content-wrapper {
-            position: relative;
-            margin-right: 250px;
-        }
-    }
-
-    @media (max-width: 767px) {
-        #wrapper {
-            padding-left: 0;
-        }
-
-        #sidebar-wrapper {
-            width: 0;
-        }
-
-        #wrapper.toggled #sidebar-wrapper {
-            width: 250px;
-        }
-
-        #wrapper.toggled #navbar-wrapper {
-            position: absolute;
-            margin-right: -250px;
-        }
-
-        #wrapper.toggled #content-wrapper {
-            position: absolute;
-            margin-right: -250px;
-        }
-
-        #navbar-wrapper {
-            position: relative;
-        }
-
-        #wrapper.toggled {
-            padding-left: 250px;
-        }
-
-        #content-wrapper {
-            position: relative;
-            top: 0;
-        }
-
-        #wrapper.toggled #navbar-wrapper,
-        #wrapper.toggled #content-wrapper {
-            position: relative;
-            margin-right: 250px;
-        }
-    }
-    </style>
 
 </head>
 
@@ -322,6 +40,12 @@
 
                     <a href="<?php echo base_url('karyawan/izin')?>"><i class="fa fa-user"></i>Izin Karyawan</a>
                 </li>
+                <div class="logout">
+                    <a href="<?php echo base_url('auth')?>" style="color: #4723D9; text-decoration: none;">
+                        <img src="https://media.istockphoto.com/id/1268956056/id/vektor/ikon-vektor-logout-terisolasi-pada-latar-belakang-putih-garis-besar-ikon-logout-garis-tipis.jpg?s=170667a&w=0&k=20&c=UgA9skSIk-m-ENdmH2_2KSaCTPbg1lSCERAvTL3Qosc="
+                            alt="Logout" style="width: 30px; opacity: 0.5; margin-right: 10px;" />Logout
+                    </a>
+                </div>
             </ul>
         </aside>
 
@@ -349,37 +73,33 @@
                         <div class="mb-3 col-md-6">
                             <label for="email" class="form-label">Email</label>
                             <input type="text" class="form-control" id="email" name="email"
-                                value="<?php echo $user->email ?>">
+                                $value="<?php echo $users->email; ?>">
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" name="username"
-                                value="<?php echo $user->username ?>">
-
+                                $value="<?php echo $users->username; ?>">
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="nama_depan" class="form-label">Nama Depan</label>
                             <input type="text" class="form-control" id="nama_depan" name="nama_depan"
-                                value="<?php echo $user->nama_depan ?>">
-
+                                $value="<?php echo $users->nama_depan; ?>">
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="nama_belakang" class="form-label">Nama Belakang</label>
                             <input type="text" class="form-control" id="nama_belakang" name="nama_belakang"
-                                value="<?php echo $user->nama_belakang ?>">
-
+                                $value="<?php echo $users->nama_belakang; ?>">
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label for="new-password" class="form-label">Password Baru</label>
-                            <input type="text" class="form-control" id="password_baru" name="password_baru"
-                                value="<?php echo $user->password_baru ?>">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="confirm-password" class="form-label">Konfirmasi Password</label>
-                            <input type="text" class="form-control" id="konfirmasi_password" name="konfirmasi_password"
-                                value="<?php echo $user->konfirmasi_password?>">
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="new-password" class="form-label">Password Baru</label>
+                                <input type="text" class="form-control" id="password_baru" name="password_baru">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="confirm-password" class="form-label">Konfirmasi Password</label>
+                                <input type="text" class="form-control" id="konfirmasi_password"
+                                    name="konfirmasi_password">
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3 col-12">
