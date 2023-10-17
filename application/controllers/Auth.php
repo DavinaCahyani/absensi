@@ -83,6 +83,7 @@ public function aksi_register_admin()
         'email' => $email,
         'nama_depan' => $nama_depan,
         'nama_belakang' => $nama_belakang,
+        'image' => 'User.png',
         'password' => md5($password), // Simpan kata sandi yang telah di-MD5
         'role' => 'admin' // Atur peran sesuai dengan kebutuhan aplikasi Anda
     );
@@ -119,6 +120,7 @@ public function aksi_register_karyawan()
         'email' => $email,
         'nama_depan' => $nama_depan,
         'nama_belakang' => $nama_belakang,
+        'image' => 'User.png',
         'password' => md5($password), // Simpan kata sandi yang telah di-MD5
         'role' => 'karyawan' // Atur peran sesuai dengan kebutuhan aplikasi Anda
     );

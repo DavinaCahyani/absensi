@@ -34,20 +34,23 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa fa-user"></i>Dashboard
-                        Karyawan</a>
+                    <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('karyawan/history_karyawan')?>"><i class="fa fa-user"></i>History
-                        Karyawan</a>
+                    <a href="<?php echo base_url('admin/rekap_keseluruhan')?>"><i class="fa fa-user"></i>Rekap
+                        Keseluruhan</a>
                 </li>
                 <li class="active mt-3">
-
-                    <a href="<?php echo base_url('karyawan/menu_absen')?>"><i class="fa fa-user"></i>Absen Karyawan</a>
+                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa fa-user"></i>Rekap Harian
+                    </a>
                 </li>
                 <li class="active mt-3">
-
-                    <a href="<?php echo base_url('karyawan/izin')?>"><i class="fa fa-user"></i>Izin Karyawan</a>
+                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa fa-user"></i>Rekap Mingguan
+                    </a>
+                </li>
+                <li class="active mt-3">
+                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa fa-user"></i>Rekap Bulanan
+                    </a>
                 </li>
                 <div class="logout">
                     <a href="<?php echo base_url('auth')?>" style="color: #4723D9; text-decoration: none;">
@@ -66,7 +69,7 @@
                             Profil Karyawan
                         </a>
                     </div>
-                    <p class="navbar-profile"><a href="<?php echo base_url('karyawan/profil') ?>" class="text-light"><i
+                    <p class="navbar-profile"><a href="<?php echo base_url('admin/profil') ?>" class="text-light"><i
                                 class="fa-regular fa-circle-user"></i></a></p>
                 </div>
             </nav>
@@ -76,7 +79,7 @@
             <?php foreach ($user as $users) : ?>
             <div class="row mx-3">
                 <div class="card col-4 p-3">
-                    <form action="<?php echo base_url('karyawan/aksi_image') ?>" enctype="multipart/form-data"
+                    <form action="<?php echo base_url('admin/aksi_image') ?>" enctype="multipart/form-data"
                         method="post">
                         <div class="d-flex justify-content-center">
                             <div class="row">
@@ -104,10 +107,10 @@
             </div>
             <div class="col-1"></div>
             <div class="card col-6 p-3">
-                <form action="<?php echo base_url('karyawan/aksi_ubah_profil') ?>" enctype="multipart/form-data"
+                <form action="<?php echo base_url('admin/aksi_ubah_profil') ?>" enctype="multipart/form-data"
                     method="post">
                     <div class="row">
-                        <h5>Ubah Data Karyawan</h5>
+                        <h5>Ubah Data Admin</h5>
                         <hr>
                         <div class="mb-3 col-md-6">
                             <label for="email" class="form-label">Email</label>
