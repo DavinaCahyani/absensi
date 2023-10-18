@@ -62,8 +62,9 @@
                     <form action="<?php echo base_url('karyawan/aksi_izin')?>" enctype="multipart/form-data"
                         method="post" class="row">
                         <div class="form-group">
-                            <label for="kegiatan">Kegiatan</label>
-                            <input type="kegiatan" class="form-control" id="kegiatan" name="kegiatan">
+                            <label for="keterangan_izin">Keterangan</label>
+                            <input type="keterangan_izin" class="form-control" id="keterangan_izin"
+                                name="keterangan_izin">
                         </div>
                         <div class="col-md-6 mt-4">
                             <button type="submit" class="btn btn-primary">Izin</button>

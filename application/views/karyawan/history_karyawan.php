@@ -41,12 +41,15 @@
 
                     <a href="<?php echo base_url('karyawan/izin')?>"><i class="fa fa-user"></i>Izin Karyawan</a>
                 </li>
-                <div class="logout">
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <div class="logout mt-auto">
                     <a href="<?php echo base_url('auth')?>" style="color: #4723D9; text-decoration: none;">
                         <img src="https://media.istockphoto.com/id/1268956056/id/vektor/ikon-vektor-logout-terisolasi-pada-latar-belakang-putih-garis-besar-ikon-logout-garis-tipis.jpg?s=170667a&w=0&k=20&c=UgA9skSIk-m-ENdmH2_2KSaCTPbg1lSCERAvTL3Qosc="
-                            alt="Logout" style="width: 30px; opacity: 0.5; margin-right: 10px;" />Logout
+                            alt="Logout" style="width: 30px; opacity: 0.5; margin-right: 10px;" />
+                        <span style="font-size: 20px;">Logout</span>
                     </a>
                 </div>
+
             </ul>
 
 

@@ -126,51 +126,36 @@ public function aksi_menu_absen()
 }
 
     
-public function aksi_izin()
-{
-    $id_karyawan = $this->session->userdata('id');
-    date_default_timezone_set('Asia/Jakarta');
-    $current_datetime = date('Y-m-d H:i:s');
-    $absen = $this->session->userdata('id'); // Ambil ID Karyawan dari sesi atau cara lain yang sesuai.
-
-    $tanggal = date('Y-m-d', strtotime($current_datetime));
-
-    $kegiatan = $this->input->post('kegiatan'); // Ambil jenis kegiatan dari form
-    $keterangan_izin = $this->input->post('keterangan_izin'); // Ambil keterangan izin dari form
-
-    // Inisialisasi variabel keterangan
-    $keterangan = '';
-
-    // Periksa apakah jenis kegiatan adalah "izin"
-    if ($kegiatan == 'izin') {
-        // Jika izin, atur kegiatan menjadi kosong dan keterangan diisi dengan "izin"
-        $kegiatan = '';
-        $keterangan = 'izin';
-    } else {
-        // Jika jenis kegiatan bukan "izin," tetapkan keterangan sesuai dengan input
-        $keterangan = $keterangan_izin;
-    }
-
-    $data = [
-        'id_karyawan' => $id_karyawan,
-        'kegiatan' => $kegiatan,
-        'date' => $tanggal, // Mengisi tanggal saat ini
-        'jam_masuk' => '', // Mengosongkan jam masuk
-        'jam_pulang' => '', // Mengosongkan jam pulang
-        'keterangan_izin' => $keterangan, // Menyimpan keterangan izin yang diisi oleh pengguna atau "izin" jika jenis kegiatan adalah "izin"
-        'status' => 'Done' // Mengubah status menjadi "Done"
-    ];
-
-    // Cek apakah karyawan sudah absen pada tanggal yang sama sebelumnya
-    $hasSubmittedAbsensi = $this->m_model->checkAbsensiExists($absen, date('Y-m-d'));
-
-    if (!$hasSubmittedAbsensi) {
-        $this->m_model->tambah_data('absen', $data);
-    } else {
-        // Karyawan sudah absen pada hari ini, Anda dapat menangani ini sesuai kebutuhan Anda
-    }
-
-    redirect(base_url('karyawan/history_karyawan'));
+public function aksi_izin() 
+{ 
+    $id_karyawan = $this->session->userdata('id'); 
+    date_default_timezone_set('Asia/Jakarta'); 
+    $current_datetime = date('Y-m-d H:i:s'); 
+    $absen = $this->session->userdata('id'); // Ambil ID Karyawan dari sesi atau cara lain yang sesuai. 
+ 
+    $tanggal = date('Y-m-d', strtotime($current_datetime)); 
+ 
+    $keterangan = $this->input->post('keterangan_izin'); 
+    $data = [ 
+        'id_karyawan' => $id_karyawan, 
+        'kegiatan' => '-', 
+        'date' => $tanggal, // Mengisi tanggal saat ini 
+        'jam_masuk' => '', // Mengosongkan jam masuk 
+        'jam_pulang' => '', // Mengosongkan jam pulang 
+        'keterangan_izin' => $keterangan, // Menyimpan keterangan izin yang diisi oleh pengguna atau "izin" jika jenis kegiatan adalah "izin" 
+        'status' => 'Done' // Mengubah status menjadi "Done" 
+    ]; 
+ 
+    // Cek apakah karyawan sudah absen pada tanggal yang sama sebelumnya 
+    $hasSubmittedAbsensi = $this->m_model->checkAbsensiExists($absen, date('Y-m-d')); 
+ 
+    if (!$hasSubmittedAbsensi) { 
+        $this->m_model->tambah_data('absen', $data); 
+    } else { 
+        // Karyawan sudah absen pada hari ini, Anda dapat menangani ini sesuai kebutuhan Anda 
+    } 
+ 
+    redirect(base_url('karyawan/history_karyawan')); 
 }
 
 public function aksi_pulang($id)
