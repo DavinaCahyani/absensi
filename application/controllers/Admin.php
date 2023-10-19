@@ -98,6 +98,26 @@ class Admin extends CI_Controller {
             // redirect(base_url('admin/profil'));
         }
 }
+public function hapus_karyawan($id)
+{
+   $this->m_model->delete('user', 'id', $id);
+    redirect(base_url('admin/data_karyawan'));
+}
+public function hapus_absen($id)
+{ 
+    $this->m_model->delete('absen', 'id_karyawan', $id); 
+    switch($this->uri->segment(2)){
+        case 'rekap_keseluruhan':
+            redirect(base_url('admin/rekap_keseluruhan')); 
+        case 'rekap_harian':
+            redirect(base_url('admin/rekap_harian')); 
+        case 'rekap_mingguan':
+            redirect(base_url('admin/rekap_mingguan'));
+        default:
+        redirect(base_url('admin/rekap_mingguan')); 
+    }
+}
+
 // Upload image
 // Metode ini digunakan untuk mengunggah gambar profil admin.
 public function upload_image_admin($value)

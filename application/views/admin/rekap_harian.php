@@ -90,6 +90,7 @@
                             <th>Jam Pulang</th>
                             <th>Keterangan</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -105,6 +106,7 @@
                 echo '<td>' . $row->jam_pulang . '</td>';
                 echo '<td>' . $row->keterangan_izin . '</td>';
                 echo '<td>' . $row->status . '</td>';
+                echo '<td><button onClick="hapus(' . $row->id_karyawan . ')" class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button></td>';
                 echo '</tr>';
             }
         } else {
@@ -116,6 +118,33 @@
         </section>
 
     </div>
+    <script>
+    function hapus(id) {
+        swal.fire({
+            title: 'Yakin untuk menghapus data ini?',
+            text: "Data ini akan terhapus permanen",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Dihapus',
+                    showConfirmButton: false,
+                    timer: 1500,
+
+                }).then(function() {
+                    window.location.href = "<?php echo base_url('admin/hapus_absen/')?>" + id;
+                });
+            }
+        });
+    }
+    </script>
+
 </body>
 
 </html>

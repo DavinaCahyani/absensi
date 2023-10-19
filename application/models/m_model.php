@@ -142,18 +142,19 @@ class M_model extends CI_Model {
             return array(); // Mengembalikan array kosong jika tidak ada data yang ditemukan
         }
     }
-  public function getAbsensiLast7Days() {
-    $this->load->database();
-    $end_date = date('Y-m-d');
-    $start_date = date('Y-m-d', strtotime('-7 days', strtotime($end_date)));        
-    $query = $this->db->select('date, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status, COUNT(*) AS total_absences')
-                      ->from('absen')
-                      ->where('date >=', $start_date)
-                      ->where('date <=', $end_date)
-                      ->group_by('date, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status')
-                      ->get();
-    return $query->result();
-}
+    public function getAbsensiLast7Days() {
+        $this->load->database();
+        $end_date = date('Y-m-d');
+        $start_date = date('Y-m-d', strtotime('-7 days', strtotime($end_date)));        
+        $query = $this->db->select('date, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status, id_karyawan, COUNT(*) AS total_absences')
+                          ->from('absen')
+                          ->where('date >=', $start_date)
+                          ->where('date <=', $end_date)
+                          ->group_by('date, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status, id_karyawan')
+                          ->get();
+        return $query->result();
+    }
+    
 function get_absensi_by_karyawan($id_karyawan)
     {
         $this->db->where('id_karyawan', $id_karyawan);

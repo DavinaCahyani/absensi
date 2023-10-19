@@ -180,11 +180,7 @@ public function aksi_pulang($id)
 }
 
 
-    public function hapus_karyawan($id)
-    {
-       $this->m_model->delete('absen', 'id_karyawan', $id);
-        redirect(base_url('karyawan/history_karyawan'));
-    }
+   
 
     public function aksi_ubah_profil() {
             // Mengambil input dari formulir

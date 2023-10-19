@@ -85,31 +85,30 @@ public function aksi_register_admin()
     if (empty($username) || empty($email) || empty($nama_depan) || empty($nama_belakang) || empty($password)) {
         // Tampilkan pesan error jika ada input yang kosong
         $this->session->set_flashdata('error', 'Semua field harus diisi.');
-        redirect(base_url().'auth'); // sesuaikan dengan URL halaman registrasi .
+        redirect(base_url().'auth/register_karyawan'); // sesuaikan dengan URL halaman registrasi .
+    } elseif (strlen($password) < 8) {
+        $this->session->set_flashdata('error_password' , 'gagal...');
+        redirect(base_url('auth/register_karyawan'));
+    } else {
+        // dengan menggunakan model untuk menyimpan data pengguna
+        $data = array(
+            'username' => $username,
+            'email' => $email,
+            'nama_depan' => $nama_depan,
+            'nama_belakang' => $nama_belakang,
+            'image' => 'User.png',
+            'password' => md5($password), // Simpan kata sandi yang telah di-MD5
+            'role' => 'admin' // Atur peran menjadi admin
+        );
+    
+        // memanggil model untuk menyimpan data pengguna
+        $this->m_model->tambah_data('user', $data);
+    
+        // Setelah data pengguna berhasil disimpan, dapat mengarahkan pengguna
+        // ke halaman login atau halaman lain yang sesuai.
+        redirect(base_url().'auth'); // sesuaikan dengan URL halaman login
     }
-
-    // menambahkan logika untuk memasukkan data pengguna ke dalam database
-    // Sesuai dengan framework atau model yang Anda gunakan.
-
-    // dengan menggunakan model untuk menyimpan data pengguna
-    $data = array(
-        'username' => $username,
-        'email' => $email,
-        'nama_depan' => $nama_depan,
-        'nama_belakang' => $nama_belakang,
-        'image' => 'User.png',
-        'password' => md5($password), // Simpan kata sandi yang telah di-MD5
-        'role' => 'admin' // Atur peran menjadi admin
-    );
-
-    // memanggil model untuk menyimpan data pengguna
-    $this->m_model->tambah_data('user', $data);
-
-    // Setelah data pengguna berhasil disimpan, dapat mengarahkan pengguna
-    // ke halaman login atau halaman lain yang sesuai.
-    redirect(base_url().'auth'); // sesuaikan dengan URL halaman login
 }
-
 public function aksi_register_karyawan()
 {
     $username = $this->input->post('username', true);
@@ -122,29 +121,29 @@ public function aksi_register_karyawan()
     if (empty($username) || empty($email) || empty($nama_depan) || empty($nama_belakang) || empty($password)) {
         // Tampilkan pesan error jika ada input yang kosong
         $this->session->set_flashdata('error', 'Semua field harus diisi.');
-        redirect(base_url().'auth'); // Gantilah dengan URL halaman registrasi Anda.
+        redirect(base_url().'auth/register_karyawan'); // sesuaikan dengan URL halaman registrasi .
+    } elseif (strlen($password) < 8) {
+        $this->session->set_flashdata('error_password' , 'gagal...');
+        redirect(base_url('auth/register_karyawan'));
+    } else {
+        // dengan menggunakan model untuk menyimpan data pengguna
+        $data = array(
+            'username' => $username,
+            'email' => $email,
+            'nama_depan' => $nama_depan,
+            'nama_belakang' => $nama_belakang,
+            'image' => 'User.png',
+            'password' => md5($password), // Simpan kata sandi yang telah di-MD5
+            'role' => 'karyawan' // Atur peran menjadi admin
+        );
+    
+        // memanggil model untuk menyimpan data pengguna
+        $this->m_model->tambah_data('user', $data);
+    
+        // Setelah data pengguna berhasil disimpan, dapat mengarahkan pengguna
+        // ke halaman login atau halaman lain yang sesuai.
+        redirect(base_url().'auth'); // sesuaikan dengan URL halaman login
     }
-
-    // menambahkan logika untuk memasukkan data pengguna ke dalam database
-    // Sesuai dengan framework atau model yang Anda gunakan.
-
-    // dengan menggunakan model untuk menyimpan data pengguna
-    $data = array(
-        'username' => $username,
-        'email' => $email,
-        'nama_depan' => $nama_depan,
-        'nama_belakang' => $nama_belakang,
-        'image' => 'User.png',
-        'password' => md5($password), // Simpan kata sandi yang telah di-MD5
-        'role' => 'karyawan' // Atur peran sesuai dengan kebutuhan aplikasi 
-    );
-
-    // Panggil model untuk menyimpan data pengguna
-    $this->m_model->tambah_data('user', $data);
-
-    // Setelah data pengguna berhasil disimpan, dapat mengarahkan pengguna
-    // ke halaman login atau halaman lain yang sesuai.
-    redirect(base_url().'auth'); // sesuaikan dengan URL halaman login .
 }
 
 function logout() {

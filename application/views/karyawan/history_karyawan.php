@@ -108,7 +108,7 @@
                                 <a href="<?php echo base_url('karyawan/ubah_absen/' . $row->id) ?>"
                                     class="btn btn-sm btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <!-- HAPUS -->
-                                <button class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>
+                                <!-- <button class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button> -->
                                 <?php else : ?>
                                 <button type="button" class="btn btn-sm btn-warning mx-1" disabled><i
                                         class="fa-solid fa-house"></i></button>
@@ -116,8 +116,8 @@
                                 <a href="<?php echo base_url('karyawan/ubah_absen/' . $row->id) ?>"
                                     class="btn btn-sm btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <!-- HAPUS -->
-                                <button onClick="hapus(<?php echo $row->id_karyawan ?>)"
-                                    class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>
+                                <!-- <button onClick="hapus(<?php echo $row->id_karyawan ?>)"
+                                    class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button> -->
                                 <?php endif; ?>
                             </div>
                         </td>
@@ -127,32 +127,6 @@
             </table>
     </div>
     </section>
-    <script>
-    function hapus(id) {
-        swal.fire({
-            title: 'Yakin untuk menghapus data ini?',
-            text: "Data ini akan terhapus permanen",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Ya Hapus'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil Dihapus',
-                    showConfirmButton: false,
-                    timer: 1500,
-
-                }).then(function() {
-                    window.location.href = "<?php echo base_url('karyawan/hapus_karyawan/')?>" + id;
-                });
-            }
-        });
-    }
-    </script>
 
     </div>
 </body>

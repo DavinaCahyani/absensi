@@ -1,3 +1,7 @@
+<?php
+$error_password = $this->session->flashdata('error_password');
+$error_email = $this->session->flashdata('error_email');
+?>
 <!DOCTYPE html>
 <!-- Created By CodingNepal -->
 <html lang="en" dir="ltr">
@@ -6,6 +10,9 @@
     <meta charset="utf-8">
     <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <style>
     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
@@ -33,7 +40,7 @@
 
     .wrapper {
         overflow: hidden;
-        max-width: 390px;
+        max-width: 600px;
         background: #fff;
         padding: 30px;
         border-radius: 5px;
@@ -137,7 +144,6 @@
 
     .form-inner form .field {
         height: 50px;
-        width: 100%;
         margin-top: 20px;
     }
 
@@ -247,25 +253,29 @@
             <div class="form-inner">
                 <form action="<?php echo base_url();?>auth/aksi_register_admin" method="post" class="signup">
 
-                    <div class="field">
-                        <input type="text" name="username" placeholder="Username" required>
+                    <div class="row">
+                        <div class="field col-6">
+                            <input type="text" name="nama_depan" placeholder="Nama Depan" required>
+                        </div>
+                        <div class="field col-6">
+                            <input type="text" name="nama_belakang" placeholder="Nama Belakang" required>
+                        </div>
+                        <div class="field col-6">
+                            <input type="text" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="field col-6">
+                            <input type="text" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="field col-12">
+                            <input type="password" id="password" placeholder="Password" name="password">
+                        </div>
+                        <div class="col-12" style="margin-top: 10px; margin-left: 3px;">
+                            <input class="form-check-input" type="checkbox" id="showPassword">
+                            <label class="form-check-label" for="showPassword">
+                                Tampilan Password
+                            </label>
+                        </div>
                     </div>
-                    <div class="field">
-                        <input type="text" name="email" placeholder="Email" required>
-                    </div>
-                    <div class="field">
-                        <input type="text" name="nama_depan" placeholder="Nama Depan" required>
-                    </div>
-                    <div class="field">
-                        <input type="text" name="nama_belakang" placeholder="Nama Belakang" required>
-                    </div>
-                    <div class="field">
-                        <label for="exampleFormControlInput1" class="form-label"></label>
-                        <input type="password" class="form-control" id="password" placeholder="Password"
-                            name="password">
-                    </div>
-                    <input type="checkbox" id="showPassword"> Show Password
-                    <br>
                     <div class="field btn">
                         <div class="btn-layer"></div>
                         <input type="submit" value="Register">
@@ -285,6 +295,16 @@
             passwordField.type = "password";
         }
     });
+    var error_password = "<?php echo $error_password; ?>";
+    if (error_password) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Kesalahan!!',
+            text: "Password harus memiliki minimal 8 karakter!!",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
     </script>
 </body>
 

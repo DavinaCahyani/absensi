@@ -84,6 +84,7 @@
                             <th>Jam Pulang</th>
                             <th>Keterangan Izin</th>
                             <th>Status</th>
+                            <th>Aksi</th>
 
                         </tr>
                     </thead>
@@ -97,12 +98,45 @@
                             <td><?php echo $row->jam_pulang ?></td>
                             <td><?php echo $row->keterangan_izin ?></td>
                             <td><?php echo $row->status ?></td>
+                            <td>
+                                <!-- HAPUS -->
+                                <button onClick="hapus(<?php echo $row->id_karyawan ?>)"
+                                    class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>
+
+                            </td>
                             <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
         </section>
     </div>
+    <script>
+    function hapus(id) {
+        swal.fire({
+            title: 'Yakin untuk menghapus data ini?',
+            text: "Data ini akan terhapus permanen",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Dihapus',
+                    showConfirmButton: false,
+                    timer: 1500,
+
+                }).then(function() {
+                    window.location.href = "<?php echo base_url('admin/hapus_absen/')?>" + id;
+                });
+            }
+        });
+    }
+    </script>
+
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Add an event listener for the "change" event on the select element
