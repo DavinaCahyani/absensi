@@ -68,20 +68,11 @@
                 <div class="col-md-3">
                     <div class="card">
                         <div class="card-header bg-primary text-white">
-                            Total Masuk Kerja
-                        </div>
-                        <div class="card-body bg-primary text-white">
-                            <h2 class="card-text">300 Kali</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
                             Total Izin Kerja
                         </div>
                         <div class="card-body bg-primary text-white">
-                            <h2 class="card-text">30 Kali</h2>
+                            <h2 class="card-text"><?php echo $total_izin; ?>
+                                Kali</h2>
                         </div>
                     </div>
                 </div>
@@ -91,7 +82,8 @@
                             Total Absensi
                         </div>
                         <div class="card-body bg-primary text-white">
-                            <h2 class="card-text">10 Kali</h2>
+                            <h2 class="card-text"><?php echo $total_absen; ?>
+                                Kali</h2>
                         </div>
                     </div>
                 </div>

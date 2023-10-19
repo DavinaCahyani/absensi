@@ -224,6 +224,11 @@
         font-weight: 500;
         cursor: pointer;
     }
+
+    input[type="checkbox"] {
+        transform: scale(0.8);
+        /* Mengurangi skala checkbox */
+    }
     </style>
 </head>
 
@@ -244,8 +249,12 @@
                         <input type="text" name="email" placeholder="Email Address" required>
                     </div>
                     <div class="field">
-                        <input type="password" name="password" placeholder="Password" required>
+                        <label for="exampleFormControlInput1" class="form-label"></label>
+                        <input type="password" class="form-control" id="password" placeholder="Password"
+                            name="password">
                     </div>
+                    <input type="checkbox" id="showPassword"> Show Password
+                    <br>
                     <div class="field btn">
                         <div class="btn-layer"></div>
                         <input type="submit" value="Login">
@@ -253,6 +262,18 @@
             </div>
         </div>
     </div>
+    <script>
+    const passwordField = document.getElementById("password");
+    const showPasswordCheckbox = document.getElementById("showPassword");
+
+    showPasswordCheckbox.addEventListener("change", function() {
+        if (showPasswordCheckbox.checked) {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    });
+    </script>
 </body>
 
 </html>

@@ -154,6 +154,23 @@ class M_model extends CI_Model {
                       ->get();
     return $query->result();
 }
-
+function get_absensi_by_karyawan($id_karyawan)
+    {
+        $this->db->where('id_karyawan', $id_karyawan);
+        return $this->db->get('absen')->result();
+    }
+    public function count_total_absensi($id_karyawan) {
+        $this->db->where('id_karyawan', $id_karyawan);
+        return $this->db->get('absen')->num_rows();
+    }
+    
+    public function count_total_izin($id_karyawan) {
+        $this->db->where('id_karyawan', $id_karyawan);
+        $this->db->where('keterangan_izin !=', ''); // Memeriksa kolom 'keterangan_izin' yang tidak kosong
+        return $this->db->get('absen')->num_rows();
+    }
+    
+    
+    
 }
 ?>

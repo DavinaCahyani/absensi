@@ -224,6 +224,11 @@
         font-weight: 500;
         cursor: pointer;
     }
+
+    input[type="checkbox"] {
+        transform: scale(1.0);
+        /* Mengurangi skala checkbox */
+    }
     </style>
 </head>
 
@@ -238,13 +243,6 @@
             </div>
         </div>
         <div class="form-container">
-            <!-- <div class="slide-controls">
-                <input type="radio" name="slide" id="login" checked>
-                <input type="radio" name="slide" id="signup">
-                <label for="login" class="slide login"><a href="register">Register</a></label>
-                <label for="signup" class="slide signup"><a href="./">Login</a></label>
-                <div class="slider-tab"></div>
-            </div> -->
             <div class="form-inner">
                 <form action="<?php echo base_url();?>auth/aksi_register_karyawan" method="post" class="signup">
 
@@ -261,8 +259,12 @@
                         <input type="text" name="nama_belakang" placeholder="Nama Belakang" required>
                     </div>
                     <div class="field">
-                        <input type="password" name="password" placeholder="Password" required>
+                        <label for="exampleFormControlInput1" class="form-label"></label>
+                        <input type="password" class="form-control" id="password" placeholder="Password"
+                            name="password">
                     </div>
+                    <input type="checkbox" id="showPassword"> Show Password
+                    <br>
 
                     <div class="field btn">
                         <div class="btn-layer"></div>
@@ -272,6 +274,18 @@
             </div>
         </div>
     </div>
+    <script>
+    const passwordField = document.getElementById("password");
+    const showPasswordCheckbox = document.getElementById("showPassword");
+
+    showPasswordCheckbox.addEventListener("change", function() {
+        if (showPasswordCheckbox.checked) {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    });
+    </script>
 </body>
 
 </html>

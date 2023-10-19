@@ -12,47 +12,53 @@ class Admin extends CI_Controller {
   $this->load->model('m_model');
   $this->load->helper('my_helper');;
   $this->load->helper('html');
+  $this->load->library('upload');
+
 
   if($this->session->userdata('logged_in')!=true || $this->session->userdata('role') != 'admin') {
     redirect(base_url().'auth');
 }
     }
+    // Metode ini digunakan untuk menampilkan halaman profil admin.
     public function profil()
 	{
 		$data['user'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 		$this->load->view('admin/profil', $data);
 	}
-	
+	// Metode ini digunakan untuk menampilkan rekap keseluruhan data absensi karyawan.
 	public function rekap_keseluruhan()
 	{
         $data['absen'] = $this->m_model->getHistoriKaryawan();
 
 		$this->load->view('admin/rekap_keseluruhan', $data);
 	}
+    // Metode ini digunakan untuk menampilkan data karyawan.
 	public function data_karyawan()
 	{
         $data['user'] = $this->m_model->getDataKaryawan();
 
 		$this->load->view('admin/data_karyawan', $data);
 	}
+    // Metode ini digunakan untuk menampilkan rekap bulanan data absensi karyawan berdasarkan bulan yang dipilih.
     public function rekap_bulanan() {
         $bulan = $this->input->post('bulan'); // Mengambil bulan dari input form
-        $data['absen'] = $this->m_model->get_bulanan($bulan); // Ganti dengan fungsi yang sesuai
+        $data['absen'] = $this->m_model->get_bulanan($bulan); // menyeseuaikan dengan fungsi yang sesuai
         $this->session->set_flashdata('bulan', $bulan);
         $this->load->view('admin/rekap_bulanan', $data);
     }
-    
+    // Metode ini digunakan untuk menampilkan rekap harian data absensi karyawan berdasarkan tanggal yang dipilih.
     public function rekap_harian() {
         $tanggal = $this->input->get('tanggal'); // Mengambil tanggal dari formulir
         $data['absen'] = $this->m_model->getRekapHarian($tanggal); // Mengambil data berdasarkan tanggal
         $this->session->set_flashdata('tanggal', $tanggal);
          $this->load->view('admin/rekap_harian', $data);
     }
-
+    // Metode ini digunakan untuk menampilkan rekap mingguan data absensi karyawan dalam 7 hari terakhir.
 	public function rekap_mingguan() {
         $data['absen'] = $this->m_model->getAbsensiLast7Days();        
         $this->load->view('admin/rekap_mingguan', $data);
     }
+    // Metode ini digunakan untuk mengubah profil admin, termasuk mengganti email, username, nama, dan password.
     public function aksi_ubah_profil() {
         // Mengambil input dari formulir
         $email = $this->input->post('email');
@@ -93,6 +99,7 @@ class Admin extends CI_Controller {
         }
 }
 // Upload image
+// Metode ini digunakan untuk mengunggah gambar profil admin.
 public function upload_image_admin($value)
 {
     $kode = round(microtime(true) * 1000);
@@ -109,6 +116,7 @@ public function upload_image_admin($value)
         return [true, $nama];
     }
 }
+// Metode ini digunakan untuk menghandle aksi pengunggahan gambar profil admin.
 public function aksi_image()
 {
     $foto = $this->upload_image_admin('foto');
@@ -131,7 +139,7 @@ public function aksi_image()
     }
     }
 }
-
+// Metode ini digunakan untuk mengekspor data karyawan ke dalam format Excel (XLSX).
     public function export_data_karyawan()
 	{
 		$spreadsheet = new Spreadsheet();
@@ -212,6 +220,7 @@ public function aksi_image()
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
 	}
+    // Metode ini digunakan untuk mengekspor rekap bulanan data absensi karyawan ke dalam format Excel (XLSX).
     public function export_rekap_bulanan()
     {
         // Ambil data rekap bulanan dari model sesuai bulan yang dipilih
@@ -317,7 +326,7 @@ public function aksi_image()
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
     }
-    
+    // Metode ini digunakan untuk mengekspor rekap harian data absensi karyawan ke dalam format Excel (XLSX).
     public function export_rekap_harian()
     {
         // Ambil data rekap bulanan dari model sesuai bulan yang dipilih
@@ -423,7 +432,7 @@ public function aksi_image()
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
     }
-    
+    // Metode ini digunakan untuk mengekspor rekap mingguan data absensi karyawan ke dalam format Excel (XLSX).
     public function export_rekap_mingguan()
     {
 
@@ -559,6 +568,7 @@ public function aksi_image()
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
     } 
+    // Metode ini digunakan untuk mengekspor rekap keseluruhan data absensi karyawan ke dalam format Excel (XLSX).
     public function export_rekap_keseluruhan()
     {
         // Ambil data rekap bulanan dari model sesuai bulan yang dipilih

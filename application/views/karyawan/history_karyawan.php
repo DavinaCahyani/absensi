@@ -77,8 +77,9 @@
                         <th>No</th>
                         <th>Kegiatan</th>
                         <th>Tanggal</th>
-                        <th>Jam masuk</th>
+                        <th>Jam Masuk</th>
                         <th>Jam Pulang</th>
+                        <th>Jam Izin</th>
                         <th>Keterangan</th>
                         <th>Status</th>
                         <th class="text-center">Aksi</th>
@@ -94,6 +95,7 @@
                         <td><?php echo $row->date ?></td>
                         <td><?php echo $row->jam_masuk ?></td>
                         <td><?php echo $row->jam_pulang ?></td>
+                        <td><?php echo $row->jam_izin ?></td>
                         <td><?php echo $row->keterangan_izin ?></td>
                         <td><?php echo $row->status ?></td>
 

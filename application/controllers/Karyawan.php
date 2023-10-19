@@ -15,50 +15,50 @@ class Karyawan extends CI_Controller {
 }
     }
 
-    // public function admin()
-    // {
-    //     // $data['absen'] = $this->m_model->get_data('absen')->result();
-    //     $this->load->view('admin/admin');
-    // }
     public function karyawan()
-    {
-        // $data['absen'] = $this->m_model->get_data('absen')->result();
-        $this->load->view('karyawan/karyawan');
-    }
-    // Contoh dalam controller Karyawan.php
+{
+    $id_karyawan = $this->session->userdata('id');
+    $data['absen'] = $this->m_model->get_absensi_by_karyawan($id_karyawan);
+    $data['absensi_count'] = count($data['absen']);
+    
+    // Hitung total absensi dan izin dengan benar
+    $data['total_absen'] = $this->m_model->count_total_absensi($id_karyawan);
+    $data['total_izin'] = $this->m_model->count_total_izin($id_karyawan);
+
+    $this->load->view('karyawan/karyawan', $data);
+}
+
     public function history_karyawan() {
     // Mengambil data histori karyawan (contoh menggunakan model)
     $data['absen'] = $this->m_model->getHistoriKaryawan();
 
     // Memuat tampilan dan mengirimkan data
     $this->load->view('karyawan/history_karyawan', $data);
-}
+    }
 
     public function menu_absen()
     {
-        // $data['absen'] = $this->m_model->get_data('absen')->result();
         $id_karyawan = $this->session->userdata('id');
         $this->load->view('karyawan/menu_absen');
     }
     
     public function izin()
     {
-        
         $this->load->view('karyawan/izin');
     }
 
-    
     public function profil()
 	{
 		$data['user'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 		$this->load->view('karyawan/profil', $data);
 	}
+
 	public function ubah_absen($id)
-{
+    {
     // Ambil data absen berdasarkan ID yang akan diubah
     $data['absen'] = $this->m_model->getAbsenById($id);
     $this->load->view('karyawan/ubah_absen', $data);
-}
+    }
 
 public function aksi_ubah_absen() { 
     $id = $this->input->post('id'); 
@@ -109,6 +109,7 @@ public function aksi_menu_absen()
         'date' => $tanggal,
         'jam_masuk' => $jam,
         'jam_pulang' => '-',
+        'jam_izin' => '-',
         'keterangan_izin' => $keterangan_izin, // Menyimpan keterangan izin yang diisi oleh pengguna atau "-"
         'status' => 'Not'
     ];
@@ -134,6 +135,7 @@ public function aksi_izin()
     $absen = $this->session->userdata('id'); // Ambil ID Karyawan dari sesi atau cara lain yang sesuai. 
  
     $tanggal = date('Y-m-d', strtotime($current_datetime)); 
+    $jam = date('H:i:s', strtotime($current_datetime));
  
     $keterangan = $this->input->post('keterangan_izin'); 
     $data = [ 
@@ -142,6 +144,7 @@ public function aksi_izin()
         'date' => $tanggal, // Mengisi tanggal saat ini 
         'jam_masuk' => '', // Mengosongkan jam masuk 
         'jam_pulang' => '', // Mengosongkan jam pulang 
+        'jam_izin' => $jam,  
         'keterangan_izin' => $keterangan, // Menyimpan keterangan izin yang diisi oleh pengguna atau "izin" jika jenis kegiatan adalah "izin" 
         'status' => 'Done' // Mengubah status menjadi "Done" 
     ]; 
