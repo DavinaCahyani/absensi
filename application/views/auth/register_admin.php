@@ -269,7 +269,8 @@ $error_email = $this->session->flashdata('error_email');
                         <div class="field col-12">
                             <input type="password" id="password" placeholder="Password" name="password">
                         </div>
-                        <div class="col-12" style="margin-top: 10px; margin-left: 3px;">
+                        <p>*Password minimal 8 karakter</p>
+                        <div class="col-12" style="margin-top: 5px; margin-left: 3px;">
                             <input class="form-check-input" type="checkbox" id="showPassword">
                             <label class="form-check-label" for="showPassword">
                                 Tampilan Password
@@ -301,6 +302,16 @@ $error_email = $this->session->flashdata('error_email');
             icon: 'error',
             title: 'Kesalahan!!',
             text: "Password harus memiliki minimal 8 karakter!!",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
+    var error_email = "<?php echo $error_email; ?>";
+    if (error_email) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Kesalahan!!',
+            text: "Alamat email sudah terdaftar!!",
             showConfirmButton: false,
             timer: 2000
         });

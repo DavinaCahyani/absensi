@@ -253,6 +253,8 @@
                         <input type="password" class="form-control" id="password" placeholder="Password"
                             name="password">
                     </div>
+                    <!-- <p>*Password minimal 8</p> -->
+
                     <input type="checkbox" id="showPassword"> Show Password
                     <br>
                     <div class="field btn">

@@ -21,6 +21,12 @@
         display: block;
         margin: 0 auto;
     }
+
+    #foo {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+    }
     </style>
 </head>
 
@@ -52,16 +58,15 @@
                     <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa fa-user"></i>Rekap Bulanan
                     </a>
                 </li>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-                <div class="logout mt-auto">
+            </ul>
+            <div class="sidebar-nav m-4">
+                <div id="foo" class="active fw-semibold">
                     <a href="<?php echo base_url('auth')?>" style="color: #4723D9; text-decoration: none;">
-                        <img src="https://media.istockphoto.com/id/1268956056/id/vektor/ikon-vektor-logout-terisolasi-pada-latar-belakang-putih-garis-besar-ikon-logout-garis-tipis.jpg?s=170667a&w=0&k=20&c=UgA9skSIk-m-ENdmH2_2KSaCTPbg1lSCERAvTL3Qosc="
-                            alt="Logout" style="width: 30px; opacity: 0.5; margin-right: 10px;" />
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         <span style="font-size: 20px;">Logout</span>
                     </a>
                 </div>
-            </ul>
+            </div>
         </aside>
 
         <div id="navbar-wrapper">
@@ -99,7 +104,7 @@
                                     <h5>Preview Image : </h5>
                                 </div>
                                 <div class="mb-3 px-5 col-md-12 image-container">
-                                    <img class="rounded-circle" id="preview-image" src="#" alt="Preview" width="150" />
+                                    <img class="rounded-circle" id="preview-image" width="150" />
                                 </div>
                                 <div class="mb-3 px-3 col-md-12">
                                     <button type="submit" class="btn btn-primary w-100">Ubah</button>
@@ -137,6 +142,14 @@
                         </div>
                         <h5>Ubah Password</h5>
                         <hr>
+                        <div class="mb-3 col-md-12">
+                            <label for="password_lama" class="form-label">Password Lama</label>
+                            <input type="password" class="form-control" id="password_lama" name="password_lama">
+                            <?php
+                               echo $this->session->flashdata('error_password_lama');
+                            ?>
+                        </div>
+
                         <div class="mb-3 col-md-6">
                             <label for="new-password" class="form-label">Password Baru</label>
                             <input type="text" class="form-control" id="password_baru" name="password_baru">

@@ -85,12 +85,19 @@ public function aksi_register_admin()
     if (empty($username) || empty($email) || empty($nama_depan) || empty($nama_belakang) || empty($password)) {
         // Tampilkan pesan error jika ada input yang kosong
         $this->session->set_flashdata('error', 'Semua field harus diisi.');
-        redirect(base_url().'auth/register_karyawan'); // sesuaikan dengan URL halaman registrasi .
+        redirect(base_url().'auth/register_admin'); // sesuaikan dengan URL halaman registrasi .
     } elseif (strlen($password) < 8) {
         $this->session->set_flashdata('error_password' , 'gagal...');
-        redirect(base_url('auth/register_karyawan'));
+        redirect(base_url('auth/register_admin'));
     } else {
-        // dengan menggunakan model untuk menyimpan data pengguna
+        // Memeriksa apakah alamat email sudah terdaftar
+        $existing_user = $this->m_model->getwhere('user', array('email' => $email))->row_array();
+        if (!empty($existing_user)) {
+            // Jika alamat email sudah terdaftar, tampilkan pesan kesalahan
+            $this->session->set_flashdata('error_email', 'Alamat email sudah terdaftar.');
+            redirect(base_url('auth/register_admin'));
+        } else {
+        // Jika alamat email belum terdaftar, simpan data pengguna baru
         $data = array(
             'username' => $username,
             'email' => $email,
@@ -107,8 +114,10 @@ public function aksi_register_admin()
         // Setelah data pengguna berhasil disimpan, dapat mengarahkan pengguna
         // ke halaman login atau halaman lain yang sesuai.
         redirect(base_url().'auth'); // sesuaikan dengan URL halaman login
+        }
     }
 }
+
 public function aksi_register_karyawan()
 {
     $username = $this->input->post('username', true);
@@ -126,7 +135,14 @@ public function aksi_register_karyawan()
         $this->session->set_flashdata('error_password' , 'gagal...');
         redirect(base_url('auth/register_karyawan'));
     } else {
-        // dengan menggunakan model untuk menyimpan data pengguna
+        // Memeriksa apakah alamat email sudah terdaftar
+        $existing_user = $this->m_model->getwhere('user', array('email' => $email))->row_array();
+        if (!empty($existing_user)) {
+            // Jika alamat email sudah terdaftar, tampilkan pesan kesalahan
+            $this->session->set_flashdata('error_email', 'Alamat email sudah terdaftar.');
+            redirect(base_url('auth/register_karyawan'));
+        } else {
+        // Jika alamat email belum terdaftar, simpan data pengguna baru
         $data = array(
             'username' => $username,
             'email' => $email,
@@ -144,6 +160,7 @@ public function aksi_register_karyawan()
         // ke halaman login atau halaman lain yang sesuai.
         redirect(base_url().'auth'); // sesuaikan dengan URL halaman login
     }
+}
 }
 
 function logout() {

@@ -13,6 +13,13 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <?php echo link_tag('style/style.css');?>
+    <style>
+    #foo {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+    }
+    </style>
 </head>
 
 <body>
@@ -30,24 +37,26 @@
                         Keseluruhan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa fa-user"></i>Rekap Harian</a>
+                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa fa-user"></i>Rekap Harian
+                    </a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa fa-user"></i>Rekap Mingguan</a>
+                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa fa-user"></i>Rekap Mingguan
+                    </a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa fa-user"></i>Rekap Bulanan</a>
+                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa fa-user"></i>Rekap Bulanan
+                    </a>
                 </li>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-                <div class="logout mt-auto">
+            </ul>
+            <div class="sidebar-nav m-4">
+                <div id="foo" class="active fw-semibold">
                     <a href="<?php echo base_url('auth')?>" style="color: #4723D9; text-decoration: none;">
-                        <img src="https://media.istockphoto.com/id/1268956056/id/vektor/ikon-vektor-logout-terisolasi-pada-latar-belakang-putih-garis-besar-ikon-logout-garis-tipis.jpg?s=170667a&w=0&k=20&c=UgA9skSIk-m-ENdmH2_2KSaCTPbg1lSCERAvTL3Qosc="
-                            alt="Logout" style="width: 30px; opacity: 0.5; margin-right: 10px;" />
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         <span style="font-size: 20px;">Logout</span>
                     </a>
                 </div>
-            </ul>
+            </div>
         </aside>
         <div id="navbar-wrapper">
             <nav class="navbar navbar-inverse" style="background: #4723D9; border: none;">
@@ -66,29 +75,34 @@
 
 
         <section id="content-wrapper">
-            <div class="row p-3 card mx-3">
-                <a href="<?php echo base_url('admin/export_rekap_bulanan')?>" class="btn btn-primary col-1">Export</a>
-                <form action="<?= base_url('admin/rekap_bulanan') ?>" method="post">
-                    <div class="form-group">
-                        <label for="bulan">Pilih Bulan:</label>
-                        <select class="form-control" id="bulan" name="bulan">
-                            <option value="01">Januari</option>
-                            <option value="02">Februari</option>
-                            <option value="03">Maret</option>
-                            <option value="04">April</option>
-                            <option value="05">Mei</option>
-                            <option value="06">Juni</option>
-                            <option value="07">Juli</option>
-                            <option value="08">Agustus</option>
-                            <option value="09">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
+            <div class="p-3 card mx-3">
+                <div class="row">
+                    <div class="col-6">
+                        <a href="<?php echo base_url('admin/export_rekap_bulanan')?>" class="btn btn-primary">Export</a>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-                <table class="table table-striped table-hover">
+
+                    <div class="col-6">
+                        <form action="<?= base_url('admin/rekap_bulanan') ?>" method="post"
+                            class="d-flex justify-content-end">
+                            <select class="form-control w-50 mx-3" id="bulan" name="bulan">
+                                <option value="01">Januari</option>
+                                <option value="02">Februari</option>
+                                <option value="03">Maret</option>
+                                <option value="04">April</option>
+                                <option value="05">Mei</option>
+                                <option value="06">Juni</option>
+                                <option value="07">Juli</option>
+                                <option value="08">Agustus</option>
+                                <option value="09">September</option>
+                                <option value="10">Oktober</option>
+                                <option value="11">November</option>
+                                <option value="12">Desember</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover mt-4">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -123,7 +137,7 @@
                         <?php endforeach ?>
                         <?php else: ?>
                         <tr>
-                            <td colspan="7">Tidak ada data yang ditemukan.</td>
+                            <td colspan="8">Tidak ada data yang ditemukan.</td>
                         </tr>
                         <?php endif; ?>
                     </tbody>

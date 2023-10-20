@@ -1,5 +1,10 @@
 <?php
 class M_model extends CI_Model {
+    public function __construct() {
+        parent::__construct();
+        $this->load->database();
+    }
+
     function get_data($table) {
         return $this->db->get($table);
     }
@@ -167,11 +172,22 @@ function get_absensi_by_karyawan($id_karyawan)
     
     public function count_total_izin($id_karyawan) {
         $this->db->where('id_karyawan', $id_karyawan);
-        $this->db->where('keterangan_izin !=', ''); // Memeriksa kolom 'keterangan_izin' yang tidak kosong
+        $this->db->where('keterangan_izin !=', '-'); // Memeriksa kolom 'keterangan_izin' yang tidak kosong
         return $this->db->get('absen')->num_rows();
     }
     
-    
+    public function get_password_by_user_id($user) {
+        $this->db->select('password');
+        $this->db->where('id', $user);
+        $query = $this->db->get('user');
+
+        if ($query->num_rows() > 0) {
+            $row = $query->row();
+            return $row->password;
+        }
+
+        return null; // Kembalikan null jika user_id tidak ditemukan
+    }
     
 }
 ?>

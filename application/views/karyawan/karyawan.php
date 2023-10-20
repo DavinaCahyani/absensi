@@ -11,6 +11,13 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <?php echo link_tag('style/style.css');?>
+    <style>
+    #foo {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+    }
+    </style>
 </head>
 
 <body>
@@ -22,30 +29,33 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa fa-user"></i>Dashboard
+                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa fa-circle"></i>Dashboard
                         Karyawan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('karyawan/history_karyawan')?>"><i class="fa fa-user"></i>History
+                    <a href="<?php echo base_url('karyawan/history_karyawan')?>"><i
+                            class="fa fa-clock-rotate-left"></i>History
                         Karyawan</a>
                 </li>
                 <li class="active mt-3">
 
-                    <a href="<?php echo base_url('karyawan/menu_absen')?>"><i class="fa fa-user"></i>Absen Karyawan</a>
+                    <a href="<?php echo base_url('karyawan/menu_absen')?>"><i class="fa fa-clock-rotate-left"></i>Absen
+                        Karyawan</a>
                 </li>
                 <li class="active mt-3">
 
-                    <a href="<?php echo base_url('karyawan/izin')?>"><i class="fa fa-user"></i>Izin Karyawan</a>
+                    <a href="<?php echo base_url('karyawan/izin')?>"><i class="fa fa-clock-rotate-left"></i>Izin
+                        Karyawan</a>
                 </li>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <div class="logout mt-auto">
+            </ul>
+            <div class="sidebar-nav m-4">
+                <div id="foo" class="active fw-semibold">
                     <a href="<?php echo base_url('auth')?>" style="color: #4723D9; text-decoration: none;">
-                        <img src="https://media.istockphoto.com/id/1268956056/id/vektor/ikon-vektor-logout-terisolasi-pada-latar-belakang-putih-garis-besar-ikon-logout-garis-tipis.jpg?s=170667a&w=0&k=20&c=UgA9skSIk-m-ENdmH2_2KSaCTPbg1lSCERAvTL3Qosc="
-                            alt="Logout" style="width: 30px; opacity: 0.5; margin-right: 10px;" />
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         <span style="font-size: 20px;">Logout</span>
                     </a>
                 </div>
-            </ul>
+            </div>
         </aside>
 
 
