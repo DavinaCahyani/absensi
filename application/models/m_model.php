@@ -167,6 +167,8 @@ function get_absensi_by_karyawan($id_karyawan)
     }
     public function count_total_absensi($id_karyawan) {
         $this->db->where('id_karyawan', $id_karyawan);
+        $this->db->where('keterangan_izin =', '-'); // Memeriksa kolom 'keterangan_izin' yang tidak kosong
+
         return $this->db->get('absen')->num_rows();
     }
     

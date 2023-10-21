@@ -145,18 +145,26 @@
                         <div class="mb-3 col-md-12">
                             <label for="password_lama" class="form-label">Password Lama</label>
                             <input type="password" class="form-control" id="password_lama" name="password_lama">
-                            <?php
-                               echo $this->session->flashdata('error_password_lama');
-                            ?>
+                            <div class="text-danger">
+                                <?php
+                                     echo $this->session->flashdata('error_password_lama');
+                                 ?>
+                            </div>
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label for="new-password" class="form-label">Password Baru</label>
-                            <input type="text" class="form-control" id="password_baru" name="password_baru">
+                            <input type="password" class="form-control" id="password_baru" name="password_baru">
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="confirm-password" class="form-label">Konfirmasi Password</label>
-                            <input type="text" class="form-control" id="konfirmasi_password" name="konfirmasi_password">
+                            <input type="password" class="form-control" id="konfirmasi_password"
+                                name="konfirmasi_password">
+                        </div>
+                        <div class="text-danger">
+                            <?php
+                                     echo $this->session->flashdata('konfirmasi_password');
+                                 ?>
                         </div>
                     </div>
                     <div class="mb-3 col-12">

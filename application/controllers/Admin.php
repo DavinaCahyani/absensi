@@ -68,17 +68,17 @@ class Admin extends CI_Controller {
         $password_baru = $this->input->post('password_baru');
         $konfirmasi_password = $this->input->post('konfirmasi_password');
         $password_lama = $this->input->post('password_lama'); // Tambahkan input password lama
-
+    
         // Mengambil data pengguna dari database berdasarkan ID pengguna yang disimpan dalam sesi
         $user_data = $this->m_model->getwhere('user', array('id' => $this->session->userdata('id')))->row_array();
-
+    
         // Validasi password lama
         if (md5($password_lama) !== $user_data['password']) {
-        $error_password_lama = '*Password lama salah'; // Pesan kesalahan
-        $this->session->set_flashdata('error_password_lama', 'Password lama salah');
-        redirect(base_url('admin/profil'));
+            $error_password_lama = '*Password lama salah' ; // Pesan kesalahan
+            $this->session->set_flashdata('error_password_lama', '*Password lama salah');
+            redirect(base_url('admin/profil'));
         }
- 
+    
         // Buat data yang akan diubah
         $data = array(
             'email' => $email,
@@ -86,7 +86,7 @@ class Admin extends CI_Controller {
             'nama_depan' => $nama_depan,
             'nama_belakang' => $nama_belakang
         );
-
+    
         // Jika ada password baru
         if (!empty($password_baru)) {
             // Pastikan password baru dan konfirmasi password sama
@@ -94,21 +94,22 @@ class Admin extends CI_Controller {
                 // Hash password baru
                 $data['password'] = md5($password_baru);
             } else {
-                $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
+                $this->session->set_flashdata('konfirmasi_password', '*Password baru dan konfirmasi password harus sama');
                 redirect(base_url('admin/profil'));
             }
         }
-
+    
         $this->session->set_userdata($data);
         $update_result = $this->m_model->ubah_data('user', $data, array('id' => $this->session->userdata('id')));
-
+    
         if ($update_result) {
             redirect(base_url('admin/profil'));
         } else {
             echo 'error';
             // redirect(base_url('admin/profil'));
         }
-}
+    }
+    
 public function hapus_karyawan($id)
 {
    $this->m_model->delete('user', 'id', $id);

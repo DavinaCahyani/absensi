@@ -273,7 +273,7 @@ $error_email = $this->session->flashdata('error_email');
                         <div class="col-12" style="margin-top: 5px; margin-left: 3px;">
                             <input class="form-check-input" type="checkbox" id="showPassword">
                             <label class="form-check-label" for="showPassword">
-                                Tampilan Password
+                                Show Password
                             </label>
                         </div>
                     </div>
