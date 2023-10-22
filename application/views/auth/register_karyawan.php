@@ -10,9 +10,6 @@ $error_email = $this->session->flashdata('error_email');
     <meta charset="utf-8">
     <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <style>
     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
@@ -40,7 +37,7 @@ $error_email = $this->session->flashdata('error_email');
 
     .wrapper {
         overflow: hidden;
-        max-width: 600px;
+        max-width: 390px;
         background: #fff;
         padding: 30px;
         border-radius: 5px;
@@ -144,6 +141,7 @@ $error_email = $this->session->flashdata('error_email');
 
     .form-inner form .field {
         height: 50px;
+        width: 100%;
         margin-top: 20px;
     }
 
@@ -235,7 +233,25 @@ $error_email = $this->session->flashdata('error_email');
         transform: scale(0.8);
         /* Mengurangi skala checkbox */
     }
+
+    .form-inner form .field {
+        position: relative;
+    }
+
+    .form-inner form .field #password {
+        padding-right: 40px;
+    }
+
+    .form-inner form .field #toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
@@ -267,15 +283,11 @@ $error_email = $this->session->flashdata('error_email');
                             <input type="text" name="username" placeholder="Username" required>
                         </div>
                         <div class="field col-12">
-                            <input type="password" id="password" placeholder="Password" name="password">
+                            <input type="password" class="form-control" id="password" placeholder="Password"
+                                name="password">
+                            <i class="fas fa-eye-slash" id="toggle-password"></i>
                         </div>
                         <p>*Password minimal 8 karakter</p>
-                        <div class="col-12" style="margin-top: 5px; margin-left: 3px;">
-                            <input class="form-check-input" type="checkbox" id="showPassword">
-                            <label class="form-check-label" for="showPassword">
-                                Show Password
-                            </label>
-                        </div>
                     </div>
                     <div class="field btn">
                         <div class="btn-layer"></div>
@@ -286,26 +298,20 @@ $error_email = $this->session->flashdata('error_email');
         </div>
     </div>
     <script>
-    const passwordField = document.getElementById("password");
-    const showPasswordCheckbox = document.getElementById("showPassword");
+    $(document).ready(function() {
+        $('#toggle-password').click(function() {
+            var passwordField = $('#password');
+            var passwordToggle = $(this);
 
-    showPasswordCheckbox.addEventListener("change", function() {
-        if (showPasswordCheckbox.checked) {
-            passwordField.type = "text";
-        } else {
-            passwordField.type = "password";
-        }
-    });
-    var error_password = "<?php echo $error_password; ?>";
-    if (error_password) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Kesalahan!!',
-            text: "Password harus memiliki minimal 8 karakter!!",
-            showConfirmButton: false,
-            timer: 2000
+            if (passwordField.attr('type') === 'password') {
+                passwordField.attr('type', 'text');
+                passwordToggle.removeClass('fa-eye-slash').addClass('fa-eye');
+            } else {
+                passwordField.attr('type', 'password');
+                passwordToggle.removeClass('fa-eye').addClass('fa-eye-slash');
+            }
         });
-    }
+    });
     var error_email = "<?php echo $error_email; ?>";
     if (error_email) {
         Swal.fire({

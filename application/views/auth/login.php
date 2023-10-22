@@ -229,7 +229,25 @@
         transform: scale(0.8);
         /* Mengurangi skala checkbox */
     }
+
+    .form-inner form .field {
+        position: relative;
+    }
+
+    .form-inner form .field #password {
+        padding-right: 40px;
+    }
+
+    .form-inner form .field #toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
@@ -249,14 +267,10 @@
                         <input type="text" name="email" placeholder="Email Address" required>
                     </div>
                     <div class="field">
-                        <label for="exampleFormControlInput1" class="form-label"></label>
                         <input type="password" class="form-control" id="password" placeholder="Password"
                             name="password">
+                        <i class="fas fa-eye-slash" id="toggle-password"></i>
                     </div>
-                    <!-- <p>*Password minimal 8</p> -->
-
-                    <input type="checkbox" id="showPassword"> Show Password
-                    <br>
                     <div class="field btn">
                         <div class="btn-layer"></div>
                         <input type="submit" value="Login">
@@ -265,15 +279,19 @@
         </div>
     </div>
     <script>
-    const passwordField = document.getElementById("password");
-    const showPasswordCheckbox = document.getElementById("showPassword");
+    $(document).ready(function() {
+        $('#toggle-password').click(function() {
+            var passwordField = $('#password');
+            var passwordToggle = $(this);
 
-    showPasswordCheckbox.addEventListener("change", function() {
-        if (showPasswordCheckbox.checked) {
-            passwordField.type = "text";
-        } else {
-            passwordField.type = "password";
-        }
+            if (passwordField.attr('type') === 'password') {
+                passwordField.attr('type', 'text');
+                passwordToggle.removeClass('fa-eye-slash').addClass('fa-eye');
+            } else {
+                passwordField.attr('type', 'password');
+                passwordToggle.removeClass('fa-eye').addClass('fa-eye-slash');
+            }
+        });
     });
     </script>
 </body>

@@ -12,6 +12,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <?php echo link_tag('style/style.css');?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
     .image-container {
         text-align: center;
@@ -26,6 +27,22 @@
         position: fixed;
         bottom: 10px;
         left: 10px;
+    }
+
+    .eye-icon {
+        position: absolute;
+        right: 20px;
+        top: 70%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    .form-control {
+        padding-right: 40px;
     }
     </style>
 </head>
@@ -142,29 +159,29 @@
                         </div>
                         <h5>Ubah Password</h5>
                         <hr>
-                        <div class="mb-3 col-md-12">
-                            <label for="password_lama" class="form-label">Password Lama</label>
-                            <input type="password" class="form-control" id="password_lama" name="password_lama">
+                        <div class="form-group mb-3 col-md-12">
+                            <label for="password_lama">Password Lama</label>
+                            <input type="password" class="form-control" id="password_lama" placeholder="Password Lama">
+                            <i class="fas fa-eye-slash eye-icon toggle-password" data-target="password_lama"></i>
                             <div class="text-danger">
-                                <?php
-                                     echo $this->session->flashdata('error_password_lama');
-                                 ?>
+                                <?php echo $this->session->flashdata('error_password_lama'); ?>
                             </div>
                         </div>
 
-                        <div class="mb-3 col-md-6">
-                            <label for="new-password" class="form-label">Password Baru</label>
-                            <input type="password" class="form-control" id="password_baru" name="password_baru">
+                        <div class="form-group mb-4 col-md-6">
+                            <label for="password_baru">Password Baru</label>
+                            <input type="password" class="form-control" id="password_baru" placeholder="Password Baru">
+                            <i class="fas fa-eye-slash eye-icon toggle-password" data-target="password_baru"></i>
                         </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="confirm-password" class="form-label">Konfirmasi Password</label>
+
+                        <div class="form-group mb-4 col-md-6">
+                            <label for="konfirmasi_password">Konfirmasi Password</label>
                             <input type="password" class="form-control" id="konfirmasi_password"
-                                name="konfirmasi_password">
+                                placeholder="Konfirmasi Password">
+                            <i class="fas fa-eye-slash eye-icon toggle-password" data-target="konfirmasi_password"></i>
                         </div>
                         <div class="text-danger">
-                            <?php
-                                     echo $this->session->flashdata('konfirmasi_password');
-                                 ?>
+                            <?php echo $this->session->flashdata('konfirmasi_password'); ?>
                         </div>
                     </div>
                     <div class="mb-3 col-12">
@@ -196,6 +213,21 @@
             } else {
                 // Jika tidak ada file yang dipilih, sembunyikan pratinjau
                 $('#preview-container').hide();
+            }
+        });
+    });
+    $(document).ready(function() {
+        $('.toggle-password').click(function() {
+            var targetID = $(this).data('target');
+            var target = $('#' + targetID);
+            var eyeIcon = $(this);
+
+            if (target.attr('type') === 'password') {
+                target.attr('type', 'text');
+                eyeIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+            } else {
+                target.attr('type', 'password');
+                eyeIcon.removeClass('fa-eye').addClass('fa-eye-slash');
             }
         });
     });
