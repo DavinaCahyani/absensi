@@ -34,19 +34,23 @@
                     <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_keseluruhan')?>"><i class="fa fa-user"></i>Rekap
+                    <a href="<?php echo base_url('admin/rekap_keseluruhan')?>"><i
+                            class="fa-solid fa-business-time"></i></i>Rekap
                         Keseluruhan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa fa-user"></i>Rekap Harian
+                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa-solid fa-calendar-days"></i>
+                        Rekap Harian
                     </a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa fa-user"></i>Rekap Mingguan
+                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa-solid fa-calendar-week"></i>
+                        Rekap Mingguan
                     </a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa fa-user"></i>Rekap Bulanan
+                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa-regular fa-calendar"></i>
+                        </i>Rekap Bulanan
                     </a>
                 </li>
             </ul>
@@ -65,9 +69,9 @@
             <nav class="navbar navbar-inverse" style="background: #4723D9; border: none;">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand text-white" href="">
+                        <!-- <a class="navbar-brand text-white" href="">
                             Data Karyawan
-                        </a>
+                        </a> -->
                     </div>
                     <p class="navbar-profile"><a href="<?php echo base_url('admin/profil') ?>" class="text-light"><i
                                 class="fa-regular fa-circle-user"></i></a></p>
@@ -79,6 +83,7 @@
         <section id="content-wrapper">
             <div class="p-3 card mx-3">
                 <div class="row">
+                    <h1>Rekap Harian</h1>
                     <div class="col-6">
                         <a href="<?php echo base_url('admin/export_rekap_harian')?>" class="btn btn-primary">Export</a>
                     </div>

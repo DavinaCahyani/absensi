@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Created By CodingNepal -->
+
 <html lang="en" dir="ltr">
 
 <head>
@@ -275,6 +275,8 @@
                         <div class="btn-layer"></div>
                         <input type="submit" value="Login">
                     </div>
+                    <br>
+                    <p>Belum punya akun?<a href="<?php echo base_url('auth/register_karyawan')?>">Register</a></p>
             </div>
         </div>
     </div>

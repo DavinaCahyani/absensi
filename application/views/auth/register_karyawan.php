@@ -3,7 +3,7 @@ $error_password = $this->session->flashdata('error_password');
 $error_email = $this->session->flashdata('error_email');
 ?>
 <!DOCTYPE html>
-<!-- Created By CodingNepal -->
+
 <html lang="en" dir="ltr">
 
 <head>
@@ -252,6 +252,8 @@ $error_email = $this->session->flashdata('error_email');
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.all.min.js"></script>
+
 </head>
 
 <body>
@@ -312,12 +314,25 @@ $error_email = $this->session->flashdata('error_email');
             }
         });
     });
+
+    // Panggil SweetAlert di luar dari $(document).ready()
     var error_email = "<?php echo $error_email; ?>";
     if (error_email) {
         Swal.fire({
             icon: 'error',
             title: 'Kesalahan!!',
             text: "Alamat email sudah terdaftar!!",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
+
+    var error_password = "<?php echo $error_password; ?>";
+    if (error_password) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Kesalahan!!',
+            text: "Password harus memiliki minimal 8 karakter!!",
             showConfirmButton: false,
             timer: 2000
         });

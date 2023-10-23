@@ -13,6 +13,7 @@
     <?php echo link_tag('style/style.css');?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
     .image-container {
         text-align: center;
@@ -60,19 +61,23 @@
                     <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_keseluruhan')?>"><i class="fa fa-user"></i>Rekap
+                    <a href="<?php echo base_url('admin/rekap_keseluruhan')?>"><i
+                            class="fa-solid fa-business-time"></i></i>Rekap
                         Keseluruhan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa fa-user"></i>Rekap Harian
+                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa-solid fa-calendar-days"></i>
+                        Rekap Harian
                     </a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa fa-user"></i>Rekap Mingguan
+                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa-solid fa-calendar-week"></i>
+                        Rekap Mingguan
                     </a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa fa-user"></i>Rekap Bulanan
+                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa-regular fa-calendar"></i>
+                        </i>Rekap Bulanan
                     </a>
                 </li>
             </ul>
@@ -161,7 +166,8 @@
                         <hr>
                         <div class="form-group mb-3 col-md-12">
                             <label for="password_lama">Password Lama</label>
-                            <input type="password" class="form-control" id="password_lama" placeholder="Password Lama">
+                            <input type="password" class="form-control" id="password_lama" name="password_lama"
+                                placeholder="Password Lama">
                             <i class="fas fa-eye-slash eye-icon toggle-password" data-target="password_lama"></i>
                             <div class="text-danger">
                                 <?php echo $this->session->flashdata('error_password_lama'); ?>
@@ -170,14 +176,15 @@
 
                         <div class="form-group mb-4 col-md-6">
                             <label for="password_baru">Password Baru</label>
-                            <input type="password" class="form-control" id="password_baru" placeholder="Password Baru">
+                            <input type="password" class="form-control" id="password_baru" name="password_baru"
+                                placeholder="Password Baru">
                             <i class="fas fa-eye-slash eye-icon toggle-password" data-target="password_baru"></i>
                         </div>
 
                         <div class="form-group mb-4 col-md-6">
                             <label for="konfirmasi_password">Konfirmasi Password</label>
                             <input type="password" class="form-control" id="konfirmasi_password"
-                                placeholder="Konfirmasi Password">
+                                name="konfirmasi_password" placeholder="Konfirmasi Password">
                             <i class="fas fa-eye-slash eye-icon toggle-password" data-target="konfirmasi_password"></i>
                         </div>
                         <div class="text-danger">
@@ -216,6 +223,8 @@
             }
         });
     });
+
+
     $(document).ready(function() {
         $('.toggle-password').click(function() {
             var targetID = $(this).data('target');

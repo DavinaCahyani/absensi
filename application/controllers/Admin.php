@@ -206,7 +206,7 @@ public function aksi_image()
         $sheet->mergeCells('A1:E1');
         $sheet->getStyle('A1')->getFont()->setBold(true);
 
-        $sheet->setCellValue('A3', "ID");
+        $sheet->setCellValue('A3', "NO");
         $sheet->setCellValue('B3', "NAMA");
         $sheet->setCellValue('C3', "EMAIL");
 
@@ -221,7 +221,7 @@ public function aksi_image()
         $numrow = 4;
         foreach($data as $data) {
             
-        $sheet->setCellValue('A'.$numrow,$data->id);
+        $sheet->setCellValue('A'.$numrow,$no);
         $sheet->setCellValue('B'.$numrow,$data->username);
         $sheet->setCellValue('C'.$numrow,$data->email); 
 
@@ -291,7 +291,7 @@ public function aksi_image()
         $sheet->mergeCells('A1:E1');
         $sheet->getStyle('A1')->getFont()->setBold(true);
 
-        $sheet->setCellValue('A3', "ID");
+        $sheet->setCellValue('A3', "NO");
         $sheet->setCellValue('B3', "KEGIATAN");
         $sheet->setCellValue('C3', "TANGGAL");
         $sheet->setCellValue('D3', "JAM MASUK");
@@ -315,7 +315,7 @@ public function aksi_image()
         $numrow = 4;
         foreach($data as $data) {
             
-        $sheet->setCellValue('A'.$numrow,$data->id);
+        $sheet->setCellValue('A'.$numrow,$no);
         $sheet->setCellValue('B'.$numrow,$data->kegiatan);
         $sheet->setCellValue('C'.$numrow,$data->date); 
         $sheet->setCellValue('D'.$numrow,$data->jam_masuk); 
@@ -397,7 +397,7 @@ public function aksi_image()
         $sheet->mergeCells('A1:E1');
         $sheet->getStyle('A1')->getFont()->setBold(true);
 
-        $sheet->setCellValue('A3', "ID");
+        $sheet->setCellValue('A3', "NO");
         $sheet->setCellValue('B3', "KEGIATAN");
         $sheet->setCellValue('C3', "TANGGAL");
         $sheet->setCellValue('D3', "JAM MASUK");
@@ -421,7 +421,7 @@ public function aksi_image()
         $numrow = 4;
         foreach($data as $data) {
             
-        $sheet->setCellValue('A'.$numrow,$data->id);
+        $sheet->setCellValue('A'.$numrow,$no);
         $sheet->setCellValue('B'.$numrow,$data->kegiatan);
         $sheet->setCellValue('C'.$numrow,$data->date); 
         $sheet->setCellValue('D'.$numrow,$data->jam_masuk); 
@@ -638,7 +638,7 @@ public function aksi_image()
         $sheet->mergeCells('A1:E1');
         $sheet->getStyle('A1')->getFont()->setBold(true);
 
-        $sheet->setCellValue('A3', "ID");
+        $sheet->setCellValue('A3', "NO");
         $sheet->setCellValue('B3', "KEGIATAN");
         $sheet->setCellValue('C3', "TANGGAL");
         $sheet->setCellValue('D3', "JAM MASUK");
@@ -662,7 +662,7 @@ public function aksi_image()
         $numrow = 4;
         foreach($data as $data) {
             
-        $sheet->setCellValue('A'.$numrow,$data->id);
+        $sheet->setCellValue('A'.$numrow,$no);
         $sheet->setCellValue('B'.$numrow,$data->kegiatan);
         $sheet->setCellValue('C'.$numrow,$data->date); 
         $sheet->setCellValue('D'.$numrow,$data->jam_masuk); 

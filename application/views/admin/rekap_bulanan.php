@@ -33,19 +33,23 @@
                     <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_keseluruhan')?>"><i class="fa fa-user"></i>Rekap
+                    <a href="<?php echo base_url('admin/rekap_keseluruhan')?>"><i
+                            class="fa-solid fa-business-time"></i></i>Rekap
                         Keseluruhan</a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa fa-user"></i>Rekap Harian
+                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa-solid fa-calendar-days"></i>
+                        Rekap Harian
                     </a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa fa-user"></i>Rekap Mingguan
+                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa-solid fa-calendar-week"></i>
+                        Rekap Mingguan
                     </a>
                 </li>
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa fa-user"></i>Rekap Bulanan
+                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa-regular fa-calendar"></i>
+                        </i>Rekap Bulanan
                     </a>
                 </li>
             </ul>
@@ -62,9 +66,9 @@
             <nav class="navbar navbar-inverse" style="background: #4723D9; border: none;">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand text-white" href="">
+                        <!-- <a class="navbar-brand text-white" href="">
                             Rekap Bulanan
-                        </a>
+                        </a> -->
                     </div>
                     <p class="navbar-profile"><a href="<?php echo base_url('admin/profil') ?>" class="text-light"><i
                                 class="fa-regular fa-circle-user"></i></a></p>
@@ -77,6 +81,36 @@
         <section id="content-wrapper">
             <div class="p-3 card mx-3">
                 <div class="row">
+                    <h1>Rekap Bulan
+                        <?php
+    // Ambil nilai bulan dari input (jika ada)
+    $bulan = $this->input->post('bulan');
+
+    // Buat array asosiatif untuk mengonversi kode bulan menjadi nama bulan
+    $bulan_array = array(
+        '01' => 'Januari',
+        '02' => 'Februari',
+        '03' => 'Maret',
+        '04' => 'April',
+        '05' => 'Mei',
+        '06' => 'Juni',
+        '07' => 'Juli',
+        '08' => 'Agustus',
+        '09' => 'September',
+        '10' => 'Oktober',
+        '11' => 'November',
+        '12' => 'Desember'
+    );
+
+    // Periksa apakah nilai bulan ada dalam array
+    if (array_key_exists($bulan, $bulan_array)) {
+        echo $bulan_array[$bulan]; // Tampilkan nama bulan
+    } else {
+        echo " "; // Jika tidak ada bulan yang dipilih
+    }
+    ?>
+                    </h1>
+
                     <div class="col-6">
                         <a href="<?php echo base_url('admin/export_rekap_bulanan')?>" class="btn btn-primary">Export</a>
                     </div>

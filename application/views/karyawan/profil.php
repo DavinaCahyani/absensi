@@ -161,7 +161,8 @@
                         <hr>
                         <div class="form-group mb-3 col-md-12">
                             <label for="password_lama">Password Lama</label>
-                            <input type="password" class="form-control" id="password_lama" placeholder="Password Lama">
+                            <input type="password" class="form-control" id="password_lama" name="password_lama"
+                                placeholder="Password Lama">
                             <i class="fas fa-eye-slash eye-icon toggle-password" data-target="password_lama"></i>
                             <div class="text-danger">
                                 <?php echo $this->session->flashdata('error_password_lama'); ?>
@@ -170,18 +171,19 @@
 
                         <div class="form-group mb-4 col-md-6">
                             <label for="password_baru">Password Baru</label>
-                            <input type="password" class="form-control" id="password_baru" placeholder="Password Baru">
+                            <input type="password" class="form-control" id="password_baru" name="password_lama"
+                                placeholder="Password Baru">
                             <i class="fas fa-eye-slash eye-icon toggle-password" data-target="password_baru"></i>
                         </div>
 
                         <div class="form-group mb-4 col-md-6">
                             <label for="konfirmasi_password">Konfirmasi Password</label>
                             <input type="password" class="form-control" id="konfirmasi_password"
-                                placeholder="Konfirmasi Password">
+                                name="konfirmasi_password" placeholder="Konfirmasi Password">
                             <i class="fas fa-eye-slash eye-icon toggle-password" data-target="konfirmasi_password"></i>
-                        </div>
-                        <div class="text-danger">
-                            <?php echo $this->session->flashdata('konfirmasi_password'); ?>
+                            <div class="text-danger">
+                                <?php echo $this->session->flashdata('konfirmasi_password'); ?>
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3 col-12">

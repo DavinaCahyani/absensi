@@ -29,8 +29,9 @@ class Karyawan extends CI_Controller {
 }
 
     public function history_karyawan() {
-    // Mengambil data histori karyawan (contoh menggunakan model)
-    $data['absen'] = $this->m_model->getHistoriKaryawan();
+        $id_karyawan = $this->session->userdata('id');
+        $data['absen'] = $this->m_model->get_absensi_by_karyawan($id_karyawan);
+        $data['absensi_count'] = count($data['absen']);
 
     // Memuat tampilan dan mengirimkan data
     $this->load->view('karyawan/history_karyawan', $data);
