@@ -1,3 +1,7 @@
+<?php
+$error_password_lama = $this->session->flashdata('error_password_lama');
+$error_konfirmasi_password = $this->session->flashdata('error_konfirmasi_password');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +17,7 @@
     <?php echo link_tag('style/style.css');?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
     .image-container {
         text-align: center;
@@ -182,7 +187,7 @@
                                 name="konfirmasi_password" placeholder="Konfirmasi Password">
                             <i class="fas fa-eye-slash eye-icon toggle-password" data-target="konfirmasi_password"></i>
                             <div class="text-danger">
-                                <?php echo $this->session->flashdata('konfirmasi_password'); ?>
+                                <?php echo $this->session->flashdata('error_konfirmasi_password'); ?>
                             </div>
                         </div>
                     </div>
@@ -218,6 +223,8 @@
             }
         });
     });
+
+
     $(document).ready(function() {
         $('.toggle-password').click(function() {
             var targetID = $(this).data('target');
@@ -233,6 +240,29 @@
             }
         });
     });
+
+
+    var error_password_lama = "<?php echo $error_password_lama; ?>";
+    if (error_password_lama) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Kata Sandi Lama Salah',
+            text: "Silakan masukkan kata sandi lama yang benar.",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
+
+    var error_konfirmasi_password = "<?php echo $error_konfirmasi_password; ?>";
+    if (error_konfirmasi_password) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Konfirmasi Kata Sandi Tidak Cocok',
+            text: "Kata sandi baru dan konfirmasi kata sandi harus sama.",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
     </script>
 </body>
 

@@ -75,7 +75,7 @@ class Admin extends CI_Controller {
         // Validasi password lama
         if (md5($password_lama) !== $user_data['password']) {
             $error_password_lama = '*Password lama salah' ; // Pesan kesalahan
-            $this->session->set_flashdata('error_password_lama', '*Password lama salah');
+            $this->session->set_flashdata('error_password_lama');
             redirect(base_url('admin/profil'));
         }
     
@@ -94,7 +94,7 @@ class Admin extends CI_Controller {
                 // Hash password baru
                 $data['password'] = md5($password_baru);
             } else {
-                $this->session->set_flashdata('konfirmasi_password', '*Password baru dan konfirmasi password harus sama');
+                $this->session->set_flashdata('error_konfirmasi_password');
                 redirect(base_url('admin/profil'));
             }
         }
