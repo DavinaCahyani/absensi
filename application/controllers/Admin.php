@@ -25,6 +25,20 @@ class Admin extends CI_Controller {
 		$data['user'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 		$this->load->view('admin/profil', $data);
 	}
+    public function dashboard()
+	{
+
+        $data['absen'] = $this->m_model->getHistoriKaryawan();
+
+        $data['user'] = $this->m_model->getDataKaryawan();
+
+        $data['total_absen']=$this->m_model->count_total_absensi_admin();
+        $data['total_izin']=$this->m_model->count_total_izin_admin();
+        $data['total_karyawan']=$this->m_model->get_total_karyawan();
+        $data['total_keseluruhan']=$this->m_model->count_total_absen_izin_admin();
+    
+		$this->load->view('admin/dashboard', $data);
+	}
 	// Metode ini digunakan untuk menampilkan rekap keseluruhan data absensi karyawan.
 	public function rekap_keseluruhan()
 	{
@@ -75,7 +89,7 @@ class Admin extends CI_Controller {
         // Validasi password lama
         if (md5($password_lama) !== $user_data['password']) {
             $error_password_lama = '*Password lama salah' ; // Pesan kesalahan
-            $this->session->set_flashdata('error_password_lama');
+            $this->session->set_flashdata('error_password_lama','*Password lama salah');
             redirect(base_url('admin/profil'));
         }
     
@@ -94,7 +108,7 @@ class Admin extends CI_Controller {
                 // Hash password baru
                 $data['password'] = md5($password_baru);
             } else {
-                $this->session->set_flashdata('error_konfirmasi_password');
+                $this->session->set_flashdata('error_konfirmasi_password','*Password baru dan konfirmasi password harus sama');
                 redirect(base_url('admin/profil'));
             }
         }

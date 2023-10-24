@@ -29,7 +29,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa fa-circle"></i>Dashboard
+                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa-solid fa-gauge"></i></i>Dashboard
                         Karyawan</a>
                 </li>
                 <li class="active mt-3">
@@ -63,9 +63,9 @@
             <nav class="navbar navbar-inverse" style="background: #4723D9; border: none;">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand text-white" href="">
+                        <!-- <a class="navbar-brand text-white" href="">
                             Absen Karyawan
-                        </a>
+                        </a> -->
                     </div>
                     <p class="navbar-profile"><a href="<?php echo base_url('karyawan/profil') ?>" class="text-light"><i
                                 class="fa-regular fa-circle-user"></i></a></p>

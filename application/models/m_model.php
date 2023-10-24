@@ -68,6 +68,18 @@ class M_model extends CI_Model {
         // Kembalikan data dalam bentuk array.
         return $query->result();
     }
+    public function get_total_karyawan() {
+        // Gantilah 'histori_karyawan' dengan nama tabel histori karyawan Anda.
+        $this->db->select('COUNT(*) as total_karyawan');
+        $this->db->from('user');
+        $this->db->where('role', 'karyawan');
+        $query = $this->db->get();
+    
+        // Kembalikan hasil perhitungan jumlah karyawan dalam bentuk angka.
+        $result = $query->row();
+        return $result->total_karyawan;
+    }
+    
     public function getAbsenById($absen_id)
     {
         // Fungsi untuk mengambil data absen berdasarkan ID
@@ -190,6 +202,30 @@ function get_absensi_by_karyawan($id_karyawan)
 
         return null; // Kembalikan null jika user_id tidak ditemukan
     }
+    public function count_total_absensi_admin()
+    {
+        $this->db->where('keterangan_izin =', '-');
+
+        return $this->db->get('absen')->num_rows();
+    }
+
+    public function count_total_izin_admin()
+    {
+        $this->db->where('keterangan_izin !=', '-');
+        
+        return $this->db->get('absen')->num_rows();
+
+    }
+    public function count_total_absen_izin_admin()
+{
+    $total_absen = $this->db->where('keterangan_izin =', '-')->get('absen')->num_rows();
+    $total_izin = $this->db->where('keterangan_izin !=', '-')->get('absen')->num_rows();
     
+    // Gabungkan jumlah absen dan izin untuk mendapatkan total keseluruhan
+    $total_keseluruhan = $total_absen + $total_izin;
+    
+    return $total_keseluruhan;
+}
+
 }
 ?>

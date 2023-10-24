@@ -31,6 +31,10 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
+                    <a href="<?php echo base_url('admin/dashboard')?>"><i class="fa-solid fa-gauge"></i>Dashboard
+                        Admin</a>
+                </li>
+                <li class="active mt-3">
                     <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
                 </li>
                 <li class="active mt-3">
@@ -79,34 +83,43 @@
             </nav>
         </div>
         <section id="content-wrapper">
-            <div class="row p-3 card mx-3">
-                <h1>Data Karyawan</h1>
-                <a href="<?php echo base_url('admin/export_data_karyawan')?>"
-                    class="btn btn-primary col-1 mx-3">Export</a>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        <?php $no=0;foreach($user as $row): $no++?>
-                        <tr>
-                            <td><?php echo $no ?></td>
-                            <td><?php echo $row->username ?></td>
-                            <td><?php echo $row->email ?></td>
-                            <td>
-                                <!-- HAPUS -->
-                                <button onClick="hapus(<?php echo $row->id ?>)" class="btn btn-sm btn-danger mx-1"><i
-                                        class="fa-solid fa-trash"></i></button>
+            <div class="card p-3 mx-3">
+                <div class="row">
+                    <div class="col-6">
+                        <h1>Data Karyawan</h1>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a href="<?php echo base_url('admin/export_data_karyawan')?>" class="btn btn-primary">Export</a>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Nama Depan</th>
+                                <th>Nama Belakang</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <?php $no=0;foreach($user as $row): $no++?>
+                            <tr>
+                                <td><?php echo $no ?></td>
+                                <td><?php echo $row->username ?></td>
+                                <td><?php echo $row->email ?></td>
+                                <td><?php echo $row->nama_depan ?></td>
+                                <td><?php echo $row->nama_belakang ?></td>
+                                <td>
+                                    <!-- HAPUS -->
+                                    <button onClick="hapus(<?php echo $row->id ?>)"
+                                        class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>
 
-                            </td>
-                            <?php endforeach ?>
-                    </tbody>
-                </table>
+                                </td>
+                                <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 

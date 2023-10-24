@@ -33,7 +33,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa fa-circle"></i>Dashboard
+                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa-solid fa-gauge"></i></i>Dashboard
                         Karyawan</a>
                 </li>
                 <li class="active mt-3">
@@ -67,9 +67,9 @@
             <nav class="navbar navbar-inverse" style="background: #4723D9; border: none;">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand text-white" href="">
+                        <!-- <a class="navbar-brand text-white" href="">
                             History Karyawan
-                        </a>
+                        </a> -->
                     </div>
                     <p class="navbar-profile"><a href="<?php echo base_url('karyawan/profil') ?>" class="text-light"><i
                                 class="fa-regular fa-circle-user"></i></a></p>
@@ -78,62 +78,71 @@
         </div>
 
         <section id="content-wrapper">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Kegiatan</th>
-                        <th>Tanggal</th>
-                        <th>Jam Masuk</th>
-                        <th>Jam Pulang</th>
-                        <th>Jam Izin</th>
-                        <th>Keterangan</th>
-                        <th>Status</th>
-                        <th class="text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <br>
-                <br>
-                <tbody class="table-group-divider">
-                    <?php $no=0;foreach($absen as $row): $no++?>
-                    <tr>
-                        <td><?php echo $no ?></td>
-                        <td><?php echo $row->kegiatan ?></td>
-                        <td><?php echo $row->date ?></td>
-                        <td><?php echo $row->jam_masuk ?></td>
-                        <td><?php echo $row->jam_pulang ?></td>
-                        <td><?php echo $row->jam_izin ?></td>
-                        <td><?php echo $row->keterangan_izin ?></td>
-                        <td><?php echo $row->status ?></td>
+            <br><br>
+            <div class="card w-100 m-auto p-3">
+                <div class="row">
+                    <h3 class="text-center">History Karyawan</h3>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Kegiatan</th>
+                                <th>Tanggal</th>
+                                <th>Jam Masuk</th>
+                                <th>Jam Pulang</th>
+                                <th>Jam Izin</th>
+                                <th>Keterangan</th>
+                                <th>Status</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <br>
+                        <br>
+                        <tbody class="table-group-divider">
+                            <?php $no=0;foreach($absen as $row): $no++?>
+                            <tr>
+                                <td><?php echo $no ?></td>
+                                <td><?php echo tampil_nama_karyawan_byid($row->id_karyawan) ?></td>
+                                <td><?php echo $row->kegiatan ?></td>
+                                <td><?php echo $row->date ?></td>
+                                <td><?php echo $row->jam_masuk ?></td>
+                                <td><?php echo $row->jam_pulang ?></td>
+                                <td><?php echo $row->jam_izin ?></td>
+                                <td><?php echo $row->keterangan_izin ?></td>
+                                <td><?php echo $row->status ?></td>
 
-                        <td>
-                            <div class="d-flex">
-                                <?php if ($row->status !== 'Done') : ?>
-                                <a href="<?php echo base_url('karyawan/aksi_pulang/' . $row->id) ?>"
-                                    class="btn btn-sm btn-warning mx-1"><i class="fa-solid fa-house"></i></a>
-                                <!-- UBAH -->
-                                <a href="<?php echo base_url('karyawan/ubah_absen/' . $row->id) ?>"
-                                    class="btn btn-sm btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <!-- HAPUS -->
-                                <!-- <button class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button> -->
-                                <?php else : ?>
-                                <button type="button" class="btn btn-sm btn-warning mx-1" disabled><i
-                                        class="fa-solid fa-house"></i></button>
-                                <!-- UBAH -->
-                                <a href="<?php echo base_url('karyawan/ubah_absen/' . $row->id) ?>"
-                                    class="btn btn-sm btn-primary mx-1"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <!-- HAPUS -->
-                                <!-- <button onClick="hapus(<?php echo $row->id_karyawan ?>)"
+                                <td>
+                                    <div class="d-flex">
+                                        <?php if ($row->status !== 'Done') : ?>
+                                        <a href="<?php echo base_url('karyawan/aksi_pulang/' . $row->id) ?>"
+                                            class="btn btn-sm btn-warning mx-1"><i class="fa-solid fa-house"></i></a>
+                                        <!-- UBAH -->
+                                        <a href="<?php echo base_url('karyawan/ubah_absen/' . $row->id) ?>"
+                                            class="btn btn-sm btn-primary mx-1"><i
+                                                class="fa-solid fa-pen-to-square"></i></a>
+                                        <!-- HAPUS -->
+                                        <!-- <button class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button> -->
+                                        <?php else : ?>
+                                        <button type="button" class="btn btn-sm btn-warning mx-1" disabled><i
+                                                class="fa-solid fa-house"></i></button>
+                                        <!-- UBAH -->
+                                        <a href="<?php echo base_url('karyawan/ubah_absen/' . $row->id) ?>"
+                                            class="btn btn-sm btn-primary mx-1"><i
+                                                class="fa-solid fa-pen-to-square"></i></a>
+                                        <!-- HAPUS -->
+                                        <!-- <button onClick="hapus(<?php echo $row->id_karyawan ?>)"
                                     class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button> -->
-                                <?php endif; ?>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
-    </div>
-    </section>
+                                        <?php endif; ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
 
     </div>
 </body>

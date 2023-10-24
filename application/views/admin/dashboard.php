@@ -7,12 +7,9 @@
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.4/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.4/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <?php echo link_tag('style/style.css');?>
     <style>
     #foo {
@@ -69,12 +66,13 @@
             </div>
         </aside>
 
+
         <div id="navbar-wrapper">
             <nav class="navbar navbar-inverse" style="background: #4723D9; border: none;">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <!-- <a class="navbar-brand text-white" href="">
-                            Rekap Keseluruhan
+                            Dashboard Admin
                         </a> -->
                     </div>
                     <p class="navbar-profile"><a href="<?php echo base_url('admin/profil') ?>" class="text-light"><i
@@ -82,16 +80,60 @@
                 </div>
             </nav>
         </div>
-        <br>
 
         <section id="content-wrapper">
-            <div class="row p-3 card mx-3">
-                <div class="col-6">
-                    <h1>Rekap Keseluruhan</h1>
+            <div class="mt-4 row d-flex justify-content-center">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            Total Izin Kerja
+                        </div>
+                        <div class="card-body bg-primary text-white">
+                            <h2 class="card-text"><?php echo $total_izin; ?>
+                                Izin</h2>
+                        </div>
+                    </div>
                 </div>
-                <a href="<?php echo base_url('admin/export_rekap_keseluruhan')?>"
-                    class="btn btn-primary col-1 mx-3">Export</a>
-
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            Total Kerja
+                        </div>
+                        <div class="card-body bg-primary text-white">
+                            <h2 class="card-text"><?php echo $total_absen; ?>
+                                Kerja</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            Total Karyawan
+                        </div>
+                        <div class="card-body bg-primary text-white">
+                            <h2 class="card-text"><?php echo $total_karyawan; ?>
+                                Karyawan</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            Total Keseluruhan
+                        </div>
+                        <div class="card-body bg-primary text-white">
+                            <h2 class="card-text"><?php echo $total_keseluruhan; ?>
+                                Keseluruhan
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="card p-3 mx-3">
+                <div class="col-6">
+                    <h1>History Karyawan</h1>
+                </div>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -99,12 +141,11 @@
                             <th>Nama</th>
                             <th>Kegiatan</th>
                             <th>Tanggal</th>
-                            <th>Jam masuk</th>
+                            <th>Jam Masuk</th>
                             <th>Jam Pulang</th>
+                            <th>Jam Izin</th>
                             <th>Keterangan</th>
                             <th>Status</th>
-                            <th>Aksi</th>
-
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -112,53 +153,47 @@
                         <tr>
                             <td><?php echo $no ?></td>
                             <td><?php echo tampil_nama_karyawan_byid($row->id_karyawan) ?></td>
-
                             <td><?php echo $row->kegiatan ?></td>
                             <td><?php echo $row->date ?></td>
                             <td><?php echo $row->jam_masuk ?></td>
                             <td><?php echo $row->jam_pulang ?></td>
+                            <td><?php echo $row->jam_izin ?></td>
                             <td><?php echo $row->keterangan_izin ?></td>
                             <td><?php echo $row->status ?></td>
-                            <td>
-                                <!-- HAPUS -->
-                                <button onClick="hapus(<?php echo $row->id_karyawan ?>)"
-                                    class="btn btn-sm btn-danger mx-1"><i class="fa-solid fa-trash"></i></button>
+                        </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
 
-                            </td>
+            <br><br>
+            <div class="card p-3 mx-3">
+
+                <div class="col-6">
+                    <h1>Data Karyawan</h1>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <?php $no=0;foreach($user as $row): $no++?>
+                        <tr>
+                            <td><?php echo $no ?></td>
+                            <td><?php echo $row->username ?></td>
+                            <td><?php echo $row->email ?></td>
                             <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
+
         </section>
 
     </div>
-    <script>
-    function hapus(id) {
-        swal.fire({
-            title: 'Yakin untuk menghapus data ini?',
-            text: "Data ini akan terhapus permanen",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Ya Hapus'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil Dihapus',
-                    showConfirmButton: false,
-                    timer: 1500,
-
-                }).then(function() {
-                    window.location.href = "<?php echo base_url('admin/hapus_absen/')?>" + id;
-                });
-            }
-        });
-    }
-    </script>
-
 </body>
 
 </html>

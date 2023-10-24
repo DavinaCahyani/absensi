@@ -31,6 +31,10 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
+                    <a href="<?php echo base_url('admin/dashboard')?>"><i class="fa-solid fa-gauge"></i>Dashboard
+                        Admin</a>
+                </li>
+                <li class="active mt-3">
                     <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
                 </li>
                 <li class="active mt-3">
@@ -82,7 +86,9 @@
 
         <section id="content-wrapper">
             <div class="row p-3 card mx-3">
-                <h1>Rekap Mingguan</h1>
+                <div class="col-6">
+                    <h1>Rekap Mingguan</h1>
+                </div>
                 <a href="<?php echo base_url('admin/export_rekap_mingguan')?>"
                     class="btn btn-primary col-1 mx-3">Export</a>
 
@@ -90,6 +96,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Nama</th>
                             <th>Kegiatan</th>
                             <th>Tanggal</th>
                             <th>Jam masuk</th>
@@ -104,6 +111,7 @@
                         <?php $no=0; foreach ($absen as $row): $no++ ?>
                         <tr>
                             <td><?php echo $no ?></td>
+                            <td><?php echo tampil_nama_karyawan_byid($row->id_karyawan) ?></td>
                             <td><?php echo $row->kegiatan ?></td>
                             <td><?php echo $row->date ?></td>
                             <td><?php echo $row->jam_masuk ?></td>

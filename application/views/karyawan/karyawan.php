@@ -29,7 +29,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
-                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa fa-circle"></i>Dashboard
+                    <a href="<?php echo base_url('karyawan/karyawan')?>"><i class="fa-solid fa-gauge"></i></i>Dashboard
                         Karyawan</a>
                 </li>
                 <li class="active mt-3">
@@ -98,37 +98,47 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Kegiatan</th>
-                        <th>Tanggal</th>
-                        <th>Jam Masuk</th>
-                        <th>Jam Pulang</th>
-                        <th>Jam Izin</th>
-                        <th>Keterangan</th>
-                        <th>Status</th>
-                        <!-- <th class="text-center">Aksi</th> -->
-                    </tr>
-                </thead>
-                <br>
-                <br>
-                <tbody class="table-group-divider">
-                    <?php $no=0;foreach($absen as $row): $no++?>
-                    <tr>
-                        <td><?php echo $no ?></td>
-                        <td><?php echo $row->kegiatan ?></td>
-                        <td><?php echo $row->date ?></td>
-                        <td><?php echo $row->jam_masuk ?></td>
-                        <td><?php echo $row->jam_pulang ?></td>
-                        <td><?php echo $row->jam_izin ?></td>
-                        <td><?php echo $row->keterangan_izin ?></td>
-                        <td><?php echo $row->status ?></td>
-                    </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+            <br><br>
+            <div class="card p-3 mx-3">
+                <div class="row">
+                    <div class=" text-center">
+                        <h3>History Karyawan</h3>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Kegiatan</th>
+                                <th>Tanggal</th>
+                                <th>Jam Masuk</th>
+                                <th>Jam Pulang</th>
+                                <th>Jam Izin</th>
+                                <th>Keterangan</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <br>
+                        <br>
+                        <tbody class="table-group-divider">
+                            <?php $no=0;foreach($absen as $row): $no++?>
+                            <tr>
+                                <td><?php echo $no ?></td>
+                                <td><?php echo tampil_nama_karyawan_byid($row->id_karyawan) ?></td>
+                                <td><?php echo $row->kegiatan ?></td>
+                                <td><?php echo $row->date ?></td>
+                                <td><?php echo $row->jam_masuk ?></td>
+                                <td><?php echo $row->jam_pulang ?></td>
+                                <td><?php echo $row->jam_izin ?></td>
+                                <td><?php echo $row->keterangan_izin ?></td>
+                                <td><?php echo $row->status ?></td>
+                            </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </section>
 
     </div>

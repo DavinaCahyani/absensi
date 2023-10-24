@@ -64,6 +64,10 @@ $error_konfirmasi_password = $this->session->flashdata('error_konfirmasi_passwor
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
+                    <a href="<?php echo base_url('admin/dashboard')?>"><i class="fa-solid fa-gauge"></i>Dashboard
+                        Admin</a>
+                </li>
+                <li class="active mt-3">
                     <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
                 </li>
                 <li class="active mt-3">
@@ -175,9 +179,6 @@ $error_konfirmasi_password = $this->session->flashdata('error_konfirmasi_passwor
                             <input type="password" class="form-control" id="password_lama" name="password_lama"
                                 placeholder="Password Lama">
                             <i class="fas fa-eye-slash eye-icon toggle-password" data-target="password_lama"></i>
-                            <div class="text-danger">
-                                <?php echo $this->session->flashdata('error_password_lama'); ?>
-                            </div>
                         </div>
 
                         <div class="form-group mb-4 col-md-6">
@@ -192,9 +193,6 @@ $error_konfirmasi_password = $this->session->flashdata('error_konfirmasi_passwor
                             <input type="password" class="form-control" id="konfirmasi_password"
                                 name="konfirmasi_password" placeholder="Konfirmasi Password">
                             <i class="fas fa-eye-slash eye-icon toggle-password" data-target="konfirmasi_password"></i>
-                        </div>
-                        <div class="text-danger">
-                            <?php echo $this->session->flashdata('error_konfirmasi_password'); ?>
                         </div>
                     </div>
                     <div class="mb-3 col-12">

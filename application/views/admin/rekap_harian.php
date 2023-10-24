@@ -31,6 +31,10 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
+                    <a href="<?php echo base_url('admin/dashboard')?>"><i class="fa-solid fa-gauge"></i>Dashboard
+                        Admin</a>
+                </li>
+                <li class="active mt-3">
                     <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
                 </li>
                 <li class="active mt-3">
@@ -83,11 +87,9 @@
         <section id="content-wrapper">
             <div class="p-3 card mx-3">
                 <div class="row">
-                    <h1>Rekap Harian</h1>
                     <div class="col-6">
-                        <a href="<?php echo base_url('admin/export_rekap_harian')?>" class="btn btn-primary">Export</a>
+                        <h1>Rekap Harian</h1>
                     </div>
-
                     <div class="col-6">
                         <form action="<?= base_url('admin/rekap_harian') ?>" method="get"
                             class="d-flex justify-content-end">
@@ -95,12 +97,17 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
+                    <div class="col-6">
+                        <a href="<?php echo base_url('admin/export_rekap_harian')?>" class="btn btn-primary">Export</a>
+                    </div>
+
                 </div>
 
                 <table class="table table-striped table-hover mt-4">
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Nama</th>
                             <th>Kegiatan</th>
                             <th>Tanggal</th>
                             <th>Jam masuk</th>
@@ -117,6 +124,7 @@
                 $no++;
                 echo '<tr>';
                 echo '<td>' . $no . '</td>';
+                echo '<td>' . tampil_nama_karyawan_byid($row->id_karyawan) . '</td>';
                 echo '<td>' . $row->kegiatan . '</td>';
                 echo '<td>' . $row->date . '</td>';
                 echo '<td>' . $row->jam_masuk . '</td>';
@@ -132,7 +140,8 @@
                     </tbody>
                 </table>
             </div>
-        </section>
+    </div>
+    </section>
 
     </div>
     <script>

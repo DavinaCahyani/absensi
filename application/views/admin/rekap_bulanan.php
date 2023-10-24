@@ -30,6 +30,10 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="active mt-3">
+                    <a href="<?php echo base_url('admin/dashboard')?>"><i class="fa-solid fa-gauge"></i>Dashboard
+                        Admin</a>
+                </li>
+                <li class="active mt-3">
                     <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
                 </li>
                 <li class="active mt-3">
@@ -81,44 +85,42 @@
         <section id="content-wrapper">
             <div class="p-3 card mx-3">
                 <div class="row">
-                    <h1>Rekap Bulan
-                        <?php
-    // Ambil nilai bulan dari input (jika ada)
-    $bulan = $this->input->post('bulan');
-
-    // Buat array asosiatif untuk mengonversi kode bulan menjadi nama bulan
-    $bulan_array = array(
-        '01' => 'Januari',
-        '02' => 'Februari',
-        '03' => 'Maret',
-        '04' => 'April',
-        '05' => 'Mei',
-        '06' => 'Juni',
-        '07' => 'Juli',
-        '08' => 'Agustus',
-        '09' => 'September',
-        '10' => 'Oktober',
-        '11' => 'November',
-        '12' => 'Desember'
-    );
-
-    // Periksa apakah nilai bulan ada dalam array
-    if (array_key_exists($bulan, $bulan_array)) {
-        echo $bulan_array[$bulan]; // Tampilkan nama bulan
-    } else {
-        echo " "; // Jika tidak ada bulan yang dipilih
-    }
-    ?>
-                    </h1>
-
                     <div class="col-6">
-                        <a href="<?php echo base_url('admin/export_rekap_bulanan')?>" class="btn btn-primary">Export</a>
-                    </div>
+                        <h1>Rekap Bulan
+                            <?php
+                            // Ambil nilai bulan dari input (jika ada)
+                            $bulan = $this->input->post('bulan');
 
+                            // Buat array asosiatif untuk mengonversi kode bulan menjadi nama bulan
+                            $bulan_array = array(
+                                '01' => 'Januari',
+                                '02' => 'Februari',
+                                '03' => 'Maret',
+                                '04' => 'April',
+                                '05' => 'Mei',
+                                '06' => 'Juni',
+                                '07' => 'Juli',
+                                '08' => 'Agustus',
+                                '09' => 'September',
+                                '10' => 'Oktober',
+                                '11' => 'November',
+                                '12' => 'Desember'
+                            );
+
+                            // Periksa apakah nilai bulan ada dalam array
+                            if (array_key_exists($bulan, $bulan_array)) {
+                                echo $bulan_array[$bulan]; // Tampilkan nama bulan
+                            } else {
+                                echo " "; // Jika tidak ada bulan yang dipilih
+                            }
+                        ?>
+                        </h1>
+                    </div>
                     <div class="col-6">
                         <form action="<?= base_url('admin/rekap_bulanan') ?>" method="post"
                             class="d-flex justify-content-end">
-                            <select class="form-control w-50 mx-3" id="bulan" name="bulan">
+                            <select class="form-control w-50 mx-3" id="bulan" name="bulan"
+                                onchange="this.form.submit();">
                                 <option value="01">Januari</option>
                                 <option value="02">Februari</option>
                                 <option value="03">Maret</option>
@@ -132,7 +134,8 @@
                                 <option value="11">November</option>
                                 <option value="12">Desember</option>
                             </select>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="<?php echo base_url('admin/export_rekap_bulanan')?>"
+                                class="btn btn-primary">Export</a>
                         </form>
                     </div>
                 </div>
@@ -140,6 +143,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Nama</th>
                             <th>Kegiatan</th>
                             <th>Tanggal</th>
                             <th>Jam masuk</th>
@@ -154,6 +158,7 @@
                         <?php $no = 0; foreach($absen as $row): $no++ ?>
                         <tr>
                             <td><?php echo $no ?></td>
+                            <td><?php echo tampil_nama_karyawan_byid($row->id_karyawan) ?></td>
                             <td><?php echo $row->kegiatan ?></td>
                             <td><?php echo $row->date ?></td>
                             <td><?php echo $row->jam_masuk ?></td>
