@@ -50,6 +50,22 @@ $error_konfirmasi_password = $this->session->flashdata('error_konfirmasi_passwor
     .form-control {
         padding-right: 40px;
     }
+
+    #navbar-wrapper {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #4723D9;
+        /* Sesuaikan dengan warna latar belakang yang Anda inginkan */
+        z-index: 100;
+        /* Untuk mengatur urutan tampilan di atas elemen lain */
+    }
+
+    .navbar-profile {
+        position: fixed;
+        right: 5px;
+        top: 5px;
+    }
     </style>
 
 </head>
@@ -109,11 +125,17 @@ $error_konfirmasi_password = $this->session->flashdata('error_konfirmasi_passwor
                             Profil Karyawan
                         </a>
                     </div>
-                    <p class="navbar-profile"><a href="<?php echo base_url('admin/profil') ?>" class="text-light"><i
-                                class="fa-regular fa-circle-user"></i></a></p>
+                    <div class="navbar-profile">
+                        <?php foreach ($profile as $users): ?><a href="<?php echo base_url('admin/profil') ?>"
+                            class="text-light">
+                            <img src="<?php echo base_url('images/karyawan/' . $users->image); ?>" alt="" width="50"
+                                class="rounded-circle mb-3"></a>
+                        <?php endforeach ?>
+                    </div>
                 </div>
             </nav>
         </div>
+        <br><br><br>
 
         <section id="content-wrapper">
             <?php foreach ($user as $users) : ?>

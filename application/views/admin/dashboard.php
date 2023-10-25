@@ -17,6 +17,22 @@
         bottom: 10px;
         left: 10px;
     }
+
+    #navbar-wrapper {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #4723D9;
+        /* Sesuaikan dengan warna latar belakang yang Anda inginkan */
+        z-index: 100;
+        /* Untuk mengatur urutan tampilan di atas elemen lain */
+    }
+
+    .navbar-profile {
+        position: fixed;
+        right: 5px;
+        top: 5px;
+    }
     </style>
 </head>
 
@@ -66,21 +82,21 @@
             </div>
         </aside>
 
-
         <div id="navbar-wrapper">
             <nav class="navbar navbar-inverse" style="background: #4723D9; border: none;">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <!-- <a class="navbar-brand text-white" href="">
-                            Dashboard Admin
-                        </a> -->
+                    <div class="navbar-profile">
+                        <?php foreach ($profile as $users): ?><a href="<?php echo base_url('admin/profil') ?>"
+                            class="text-light">
+                            <img src="<?php echo base_url('images/karyawan/' . $users->image); ?>" alt="" width="50"
+                                class="rounded-circle mb-3"></a>
+                        <?php endforeach ?>
                     </div>
-                    <p class="navbar-profile"><a href="<?php echo base_url('admin/profil') ?>" class="text-light"><i
-                                class="fa-regular fa-circle-user"></i></a></p>
+
                 </div>
             </nav>
         </div>
-
+        <br><br><br>
         <section id="content-wrapper">
             <div class="mt-4 row d-flex justify-content-center">
                 <div class="col-md-3">
@@ -131,9 +147,10 @@
             </div>
             <br><br>
             <div class="card p-3 mx-3">
-                <div class="col-6">
+                <div class="text-center">
                     <h1>History Karyawan</h1>
                 </div>
+                <hr>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -169,15 +186,18 @@
             <br><br>
             <div class="card p-3 mx-3">
 
-                <div class="col-6">
+                <div class="text-center">
                     <h1>Data Karyawan</h1>
                 </div>
+                <hr>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>Nama Depan</th>
+                            <th>Nama Belakang</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -186,6 +206,8 @@
                             <td><?php echo $no ?></td>
                             <td><?php echo $row->username ?></td>
                             <td><?php echo $row->email ?></td>
+                            <td><?php echo $row->nama_depan ?></td>
+                            <td><?php echo $row->nama_belakang ?></td>
                             <?php endforeach ?>
                     </tbody>
                 </table>

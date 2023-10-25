@@ -19,6 +19,22 @@
         bottom: 10px;
         left: 10px;
     }
+
+    #navbar-wrapper {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #4723D9;
+        /* Sesuaikan dengan warna latar belakang yang Anda inginkan */
+        z-index: 100;
+        /* Untuk mengatur urutan tampilan di atas elemen lain */
+    }
+
+    .navbar-profile {
+        position: fixed;
+        right: 5px;
+        top: 5px;
+    }
     </style>
 </head>
 
@@ -69,17 +85,18 @@
         <div id="navbar-wrapper">
             <nav class="navbar navbar-inverse" style="background: #4723D9; border: none;">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <!-- <a class="navbar-brand text-white" href="">
-                            Rekap Bulanan
-                        </a> -->
+                    <div class="navbar-profile">
+                        <?php foreach ($profile as $users): ?><a href="<?php echo base_url('admin/profil') ?>"
+                            class="text-light">
+                            <img src="<?php echo base_url('images/karyawan/' . $users->image); ?>" alt="" width="50"
+                                class="rounded-circle mb-3"></a>
+                        <?php endforeach ?>
                     </div>
-                    <p class="navbar-profile"><a href="<?php echo base_url('admin/profil') ?>" class="text-light"><i
-                                class="fa-regular fa-circle-user"></i></a></p>
                 </div>
             </nav>
         </div>
-        <br>
+        <br><br><br>
+
 
 
         <section id="content-wrapper">

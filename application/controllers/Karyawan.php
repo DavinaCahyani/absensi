@@ -17,6 +17,8 @@ class Karyawan extends CI_Controller {
 
     public function karyawan()
 {
+    $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+
     $id_karyawan = $this->session->userdata('id');
     $data['absen'] = $this->m_model->get_absensi_by_karyawan($id_karyawan);
     $data['absensi_count'] = count($data['absen']);
@@ -29,6 +31,8 @@ class Karyawan extends CI_Controller {
 }
 
     public function history_karyawan() {
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+
         $id_karyawan = $this->session->userdata('id');
         $data['absen'] = $this->m_model->get_absensi_by_karyawan($id_karyawan);
         $data['absensi_count'] = count($data['absen']);
@@ -39,23 +43,31 @@ class Karyawan extends CI_Controller {
 
     public function menu_absen()
     {
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+
         $id_karyawan = $this->session->userdata('id');
-        $this->load->view('karyawan/menu_absen');
+        $this->load->view('karyawan/menu_absen', $data);
     }
     
     public function izin()
     {
-        $this->load->view('karyawan/izin');
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+
+        $this->load->view('karyawan/izin', $data);
     }
 
     public function profil()
 	{
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+
 		$data['user'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 		$this->load->view('karyawan/profil', $data);
 	}
 
 	public function ubah_absen($id)
     {
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+
     // Ambil data absen berdasarkan ID yang akan diubah
     $data['absen'] = $this->m_model->getAbsenById($id);
     $this->load->view('karyawan/ubah_absen', $data);

@@ -99,8 +99,13 @@ $error_konfirmasi_password = $this->session->flashdata('error_konfirmasi_passwor
                             Profil Karyawan
                         </a>
                     </div>
-                    <p class="navbar-profile"><a href="<?php echo base_url('karyawan/profil') ?>" class="text-light"><i
-                                class="fa-regular fa-circle-user"></i></a></p>
+                    <div class="navbar-profile">
+                        <?php foreach ($profile as $users): ?><a href="<?php echo base_url('karyawan/profil') ?>"
+                            class="text-light">
+                            <img src="<?php echo base_url('images/karyawan/' . $users->image); ?>" alt="" width="50"
+                                class="rounded-circle mb-3"></a>
+                        <?php endforeach ?>
+                    </div>
                 </div>
             </nav>
         </div>

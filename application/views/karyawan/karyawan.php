@@ -63,12 +63,17 @@
             <nav class="navbar navbar-inverse" style="background: #4723D9; border: none;">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand text-white" href="">
+                        <!-- <a class="navbar-brand text-white" href="">
                             Dashboard Karyawan
-                        </a>
+                        </a> -->
                     </div>
-                    <p class="navbar-profile"><a href="<?php echo base_url('karyawan/profil') ?>" class="text-light"><i
-                                class="fa-regular fa-circle-user"></i></a></p>
+                    <div class="navbar-profile">
+                        <?php foreach ($profile as $users): ?><a href="<?php echo base_url('karyawan/profil') ?>"
+                            class="text-light">
+                            <img src="<?php echo base_url('images/karyawan/' . $users->image); ?>" alt="" width="50"
+                                class="rounded-circle mb-3"></a>
+                        <?php endforeach ?>
+                    </div>
                 </div>
             </nav>
         </div>

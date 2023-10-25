@@ -23,26 +23,31 @@ class Admin extends CI_Controller {
     public function profil()
 	{
 		$data['user'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+
+        
 		$this->load->view('admin/profil', $data);
 	}
     public function dashboard()
 	{
 
         $data['absen'] = $this->m_model->getHistoriKaryawan();
-
         $data['user'] = $this->m_model->getDataKaryawan();
-
         $data['total_absen']=$this->m_model->count_total_absensi_admin();
         $data['total_izin']=$this->m_model->count_total_izin_admin();
         $data['total_karyawan']=$this->m_model->get_total_karyawan();
         $data['total_keseluruhan']=$this->m_model->count_total_absen_izin_admin();
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+    
     
 		$this->load->view('admin/dashboard', $data);
 	}
+
 	// Metode ini digunakan untuk menampilkan rekap keseluruhan data absensi karyawan.
 	public function rekap_keseluruhan()
 	{
         $data['absen'] = $this->m_model->getHistoriKaryawan();
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 
 		$this->load->view('admin/rekap_keseluruhan', $data);
 	}
@@ -50,11 +55,14 @@ class Admin extends CI_Controller {
 	public function data_karyawan()
 	{
         $data['user'] = $this->m_model->getDataKaryawan();
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 
 		$this->load->view('admin/data_karyawan', $data);
 	}
     // Metode ini digunakan untuk menampilkan rekap bulanan data absensi karyawan berdasarkan bulan yang dipilih.
     public function rekap_bulanan() {
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+
         $bulan = $this->input->post('bulan'); // Mengambil bulan dari input form
         $data['absen'] = $this->m_model->get_bulanan($bulan); // menyeseuaikan dengan fungsi yang sesuai
         $this->session->set_flashdata('bulan', $bulan);
@@ -62,6 +70,8 @@ class Admin extends CI_Controller {
     }
     // Metode ini digunakan untuk menampilkan rekap harian data absensi karyawan berdasarkan tanggal yang dipilih.
     public function rekap_harian() {
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+
         $tanggal = $this->input->get('tanggal'); // Mengambil tanggal dari formulir
         $data['absen'] = $this->m_model->getRekapHarian($tanggal); // Mengambil data berdasarkan tanggal
         $this->session->set_flashdata('tanggal', $tanggal);
@@ -69,6 +79,8 @@ class Admin extends CI_Controller {
     }
     // Metode ini digunakan untuk menampilkan rekap mingguan data absensi karyawan dalam 7 hari terakhir.
 	public function rekap_mingguan() {
+        $data['profile'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+
         $data['absen'] = $this->m_model->getAbsensiLast7Days();        
         $this->load->view('admin/rekap_mingguan', $data);
     }
@@ -134,15 +146,20 @@ public function hapus_absen($id)
     $this->m_model->delete('absen', 'id_karyawan', $id); 
     switch($this->uri->segment(2)){
         case 'rekap_keseluruhan':
-            redirect(base_url('admin/rekap_keseluruhan')); 
+            redirect(base_url('admin/rekap_keseluruhan'));
+            break;
         case 'rekap_harian':
-            redirect(base_url('admin/rekap_harian')); 
+            redirect(base_url('admin/rekap_harian'));
+            break;
         case 'rekap_mingguan':
             redirect(base_url('admin/rekap_mingguan'));
+            break;
         default:
-        redirect(base_url('admin/rekap_mingguan')); 
+            redirect(base_url('admin/rekap_bulanan')); 
+            break;
     }
 }
+
 
 // Upload image
 // Metode ini digunakan untuk mengunggah gambar profil admin.
