@@ -27,7 +27,9 @@ $error_email = $this->session->flashdata('error_email');
         height: 100%;
         width: 100%;
         place-items: center;
-        background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+        background: rgb(2, 0, 36);
+        background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(71, 35, 217, 1) 100%);
+
     }
 
     ::selection {
@@ -158,7 +160,7 @@ $error_email = $this->session->flashdata('error_email');
     }
 
     .form-inner form .field input:focus {
-        border-color: #fc83bb;
+        border-color: #4723D9;
         /* box-shadow: inset 0 0 3px #fb6aae; */
     }
 
@@ -182,7 +184,8 @@ $error_email = $this->session->flashdata('error_email');
 
     .form-inner form .pass-link a,
     .form-inner form .signup-link a {
-        color: #fa4299;
+        color: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(71, 35, 217, 1) 100%);
+
         text-decoration: none;
     }
 
@@ -204,7 +207,8 @@ $error_email = $this->session->flashdata('error_email');
         width: 300%;
         position: absolute;
         left: -100%;
-        background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
+        background: rgb(2, 0, 36);
+        background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(71, 35, 217, 1) 100%);
         border-radius: 5px;
         transition: all 0.4s ease;
         ;
@@ -250,6 +254,7 @@ $error_email = $this->session->flashdata('error_email');
         cursor: pointer;
     }
     </style>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.all.min.js"></script>

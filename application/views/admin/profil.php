@@ -18,6 +18,13 @@ $error_konfirmasi_password = $this->session->flashdata('error_konfirmasi_passwor
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.all.min.js"></script>
+    <!-- Tautan ke Font Awesome CSS (jika Anda ingin menggunakannya) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <!-- Tautan ke Bootstrap JavaScript (JQuery dan Popper.js diperlukan) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
     <style>
     .image-container {
@@ -66,6 +73,55 @@ $error_konfirmasi_password = $this->session->flashdata('error_konfirmasi_passwor
         right: 5px;
         top: 5px;
     }
+
+    /* Gaya awal untuk menyembunyikan ikon dropdown */
+    .toggle-icon {
+        transform: rotate(0deg);
+        transition: transform 0.2s;
+    }
+
+    /* Gaya saat dropdown dibuka (ikon diputar) */
+    #collapseExample1.show+.list-group-item .toggle-icon {
+        transform: rotate(180deg);
+    }
+
+    /* Custom styles for the dropdown menu */
+    .custom-dropdown {
+        border: none;
+        /* Remove the border */
+        box-shadow: none;
+        /* Remove the shadow */
+
+        /* Adjust padding and spacing as needed */
+        padding: 10px;
+        margin: 0;
+    }
+
+    /* Style for individual dropdown items */
+    .custom-dropdown .dropdown-item {
+        color: #4723D9;
+        /* Text color */
+        font-weight: 600;
+        /* Font weight */
+        text-indent: 0;
+        /* Reset text indent */
+        line-height: 1.5;
+        /* Adjust line height as needed */
+    }
+
+    /* Hover/focus style for dropdown items */
+    .custom-dropdown .dropdown-item:hover,
+    .custom-dropdown .dropdown-item:focus {
+        background-color: #4723D9;
+        /* Highlight color on hover/focus */
+        color: #fff;
+        /* Text color on hover/focus */
+    }
+
+    /* Remove default bullet points */
+    .custom-dropdown .dropdown-item::before {
+        content: none;
+    }
     </style>
 
 </head>
@@ -86,26 +142,36 @@ $error_konfirmasi_password = $this->session->flashdata('error_konfirmasi_passwor
                 <li class="active mt-3">
                     <a href="<?php echo base_url('admin/data_karyawan')?>"><i class="fa fa-user"></i>Data Karyawan</a>
                 </li>
-                <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_keseluruhan')?>"><i
-                            class="fa-solid fa-business-time"></i></i>Rekap
-                        Keseluruhan</a>
+                <!-- Menu dropdown -->
+                <li class="nav-item dropdown active mt-3">
+
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-business-time"></i>
+                        Rekap </a>
+                    <ul class="dropdown-menu custom-dropdown" aria-labelledby="navbarDropdown">
+                        <li class="active mt-3">
+                            <a class="dropdown-item" href="<?php echo base_url('admin/rekap_keseluruhan')?>"><i
+                                    class="fa-solid fa-business-time"></i>Rekap
+                                Keseluruhan</a>
+                        </li>
+                        <li class="active mt-3">
+                            <a class="dropdown-item" href="<?php echo base_url('admin/rekap_harian')?>"><i
+                                    class="fa-solid fa-calendar-days"></i>Rekap
+                                Harian</a>
+                        </li>
+                        <li class="active mt-3">
+                            <a class="dropdown-item" href="<?php echo base_url('admin/rekap_mingguan')?>"><i
+                                    class="fa-solid fa-calendar-week"></i>Rekap
+                                Mingguan</a>
+                        </li>
+                        <li class="active mt-3">
+                            <a class="dropdown-item" href="<?php echo base_url('admin/rekap_bulanan')?>"><i
+                                    class="fa-regular fa-calendar"></i>Rekap
+                                Bulanan</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_harian')?>"><i class="fa-solid fa-calendar-days"></i>
-                        Rekap Harian
-                    </a>
-                </li>
-                <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_mingguan')?>"><i class="fa-solid fa-calendar-week"></i>
-                        Rekap Mingguan
-                    </a>
-                </li>
-                <li class="active mt-3">
-                    <a href="<?php echo base_url('admin/rekap_bulanan')?>"><i class="fa-regular fa-calendar"></i>
-                        </i>Rekap Bulanan
-                    </a>
-                </li>
+
             </ul>
             <div class="sidebar-nav m-4">
                 <div id="foo" class="active fw-semibold">
