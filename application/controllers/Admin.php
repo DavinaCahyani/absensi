@@ -141,10 +141,10 @@ public function hapus_karyawan($id)
    $this->m_model->delete('user', 'id', $id);
     redirect(base_url('admin/data_karyawan'));
 }
-public function hapus_absen($id)
+public function hapus_absen($id, $page)
 { 
     $this->m_model->delete('absen', 'id_karyawan', $id); 
-    switch($this->uri->segment(2)){
+    switch($this->uri->segment(4)){
         case 'rekap_keseluruhan':
             redirect(base_url('admin/rekap_keseluruhan'));
             break;

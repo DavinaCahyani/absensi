@@ -168,7 +168,9 @@
                     timer: 1500,
 
                 }).then(function() {
-                    window.location.href = "<?php echo base_url('admin/hapus_absen/')?>" + id;
+                    window.location.href = "<?php echo base_url('admin/hapus_absen/')?>" + id +
+                        "/rekap_keseluruhan";
+
                 });
             }
         });

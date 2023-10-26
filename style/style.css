@@ -1,11 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap'); 
  
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    font-family: 'Poppins', sans-serif; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #fff; /* Set the default text color to white */
 }
 
 body {
@@ -16,6 +17,7 @@ body {
 
 a {
     transition: background 0.2s, color 0.2s;
+    color: #fff; /* Set link color to white */
 }
 
 a:hover,
@@ -38,8 +40,7 @@ a:focus {
     margin-left: -250px;
     overflow-y: auto;
     overflow-x: hidden;
-    background: #F7F6FB;
-    /* Warna ungu muda */
+    background: -webkit-linear-gradient(left, #a445b2, #fa4299);
     transition: all 0.5s ease;
 }
 
@@ -54,17 +55,15 @@ a:focus {
     width: 250px;
     text-align: center;
     padding: 20px 0;
-    background: #4723D9;
-
+    background: #a445b2;
 }
 
 .sidebar-brand h2 {
     margin: 0;
     font-weight: 600;
     font-size: 25px;
-    background: #4723D9;
-    color: white;
-    /* Warna ungu */
+    background: #a445b2;
+    color: #fff;
 }
 
 .sidebar-nav {
@@ -76,59 +75,43 @@ a:focus {
     list-style: none;
 }
 
-/* Gaya saat item dihover */
-.sidebar-nav>li:hover {
-    background: #4723D9;
-    text-indent: 10px;
-    line-height: 42px;
-    /* Warna ungu */
-}
-
-/* Gaya saat item mendapatkan fokus (diklik) */
+/* Adjusted styles for better readability in the sidebar */
+.sidebar-nav>li:hover,
 .sidebar-nav>li:focus {
-    background: #4723D9;
-    /* Warna ungu */
+    background: #a445b2;
 }
 
-/* Warna teks untuk item di dalam sidebar */
 .sidebar-nav>li>a {
     text-decoration: none;
-    color: #4723D9;
-    /* Warna ungu untuk teks */
     font-weight: 600;
     font-size: 18px;
-    text-indent: 10px;
     line-height: 42px;
 }
 
-/* Warna teks saat item dihover */
+/* Adjusted text color for better visibility */
+.sidebar-nav>li>a,
 .sidebar-nav>li:hover>a {
-    color: #F7F6FB;
-    text-indent: 10px;
-    line-height: 42px;
-    /* Warna putih untuk teks saat dihover */
+    color: #fff;
 }
 
 .sidebar-nav a i {
     margin-right: 10px;
-    /* Atur margin sesuai kebutuhan */
 }
 
 .navbar-profile {
     position: absolute;
     right: 15px;
     top: 5px;
-    font-size: 50px;
-    /* Ubah ukuran ikon sesuai keinginan Anda */
-    color: #F7F6FB;
+    font-size: 40px;
+    color: #fff;
     text-decoration: none;
 }
-
 
 #navbar-wrapper {
     width: 100%;
     position: fixed;
     z-index: 2;
+    background: -webkit-linear-gradient(left, #a445b2, #fa4299);
 }
 
 #wrapper.toggled #navbar-wrapper {
@@ -137,23 +120,21 @@ a:focus {
 }
 
 #navbar-wrapper .navbar {
-    border-width: 0 0 0 0;
-    background-color: #4723D9;
-    /* Warna ungu */
+    border-width: 0;
+    background: -webkit-linear-gradient(left, #a445b2, #fa4299);
     height: 75px;
     font-size: 24px;
     margin-bottom: 0;
     border-radius: 0;
 }
 
+/* Adjusted link color in the navbar */
 #navbar-wrapper .navbar a {
-    color: #F7F6FB;
-    /* Warna putih */
+    color: #fff;
 }
 
 #navbar-wrapper .navbar a:hover {
     color: #F7F6FB;
-    /* Warna putih */
 }
 
 #content-wrapper {

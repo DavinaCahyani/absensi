@@ -22,7 +22,7 @@
         position: fixed;
         top: 0;
         width: 100%;
-        background: #4723D9;
+        background: -webkit-linear-gradient(left, #a445b2, #fa4299);
         /* Sesuaikan dengan warna latar belakang yang Anda inginkan */
         z-index: 100;
         /* Untuk mengatur urutan tampilan di atas elemen lain */
