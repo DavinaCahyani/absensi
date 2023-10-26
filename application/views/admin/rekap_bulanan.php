@@ -57,15 +57,15 @@
 
     /* Custom styles for the dropdown menu */
     .custom-dropdown {
-        /* background-color: #4723D9; */
-        /* Background color */
+        background-color: transparent;
         border: none;
         /* Remove the border */
         box-shadow: none;
         /* Remove the shadow */
 
         /* Adjust padding and spacing as needed */
-        padding: 10px;
+        padding: 0px 15px 0px 15px;
+        font-size: 18px;
         margin: 0;
     }
 
